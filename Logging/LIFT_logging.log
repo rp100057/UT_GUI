@@ -1,0 +1,12 @@
+=== NEW SESSION STARTED AT: Tue Nov 08 12:31:32 2016 ===
+Warning:	test
+Error:		test
+Debug:		test
+=== NEW SESSION STARTED AT: Tue Nov 08 12:33:15 2016 ===
+Tue Nov 08 12:33:17 2016	 Debug:		test
+Tue Nov 08 12:33:20 2016	 Error:		test
+Tue Nov 08 12:33:22 2016	 Warning:	test
+=== NEW SESSION STARTED AT: Tue Nov 08 12:33:51 2016 ===
+Tue Nov 08 12:33:53 2016	 Warning	test
+Tue Nov 08 12:33:55 2016	 Error		test
+Tue Nov 08 12:33:58 2016	 Debug		test
