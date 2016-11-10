@@ -1,9 +1,12 @@
 import time
 import threading
 import Queue
+import wrp_thorlabs_sbcStepper
 
 class control:
     def __init__(self,q1,q2):
+        self.stepper_x=wrp_thorlabs_sbcStepper.wrp_thorlabs_sbcStepper("70866729")
+        self.stepper_x.init_axis()
         self.worker_q=Queue.Queue()
         self.worker_q=q1
         self.sender_q=Queue.Queue()
@@ -26,7 +29,7 @@ class control:
     def worker_loop(self):
         while self.active==True:
 #            print 'worker active'
-            time.sleep(1)
+            time.sleep(0.100)
 
             if not self.worker_q.empty():        
                 item=self.worker_q.get();
@@ -36,7 +39,7 @@ class control:
     def sender_loop(self): 
         while self.active==True:
 #            print 'sender active'
-            time.sleep(1)
+            time.sleep(0.500)
             self.sender_q.put(['update_receiver_x',self.get_pos_x()],False)
             self.sender_q.put(['update_receiver_y',self.get_pos_y()],False)
             self.sender_q.put(['update_receiver_z',self.get_pos_z()],False)
@@ -52,17 +55,20 @@ class control:
         self.worker_t.join()
         self.sender_t.join()     
         
-    def home_x(self):
+    def home_x(self,dummy):
         print 'Home x'
-
-    def home_y(self):
+        self.stepper_x.home_axis()
+        
+    def home_y(self,dummy):
         print 'Home y'
         
-    def home_z(self):
+    def home_z(self,dummy):
         print 'Home z'
+        
         
     def move_abs_x(self,pos):
         print "Moved abs x to "+str(pos)
+        self.stepper_x.move_abs(pos)
 
     def move_abs_y(self,pos):
         print "Moved abs y to "+str(pos)
@@ -72,6 +78,7 @@ class control:
 
     def move_rel_x(self,delta):
         print "Relative move x of "+str(delta)
+        self.stepper_x.move_rel(delta)
 
     def move_rel_y(self,delta):
         print "Relative move y of "+str(delta)  
@@ -81,7 +88,7 @@ class control:
         
     def get_pos_x(self):
 #        print 'Get pos x'
-        return 42
+        return self.stepper_x.get_pos()
         
     def get_pos_y(self):
 #        print 'Get pos y'

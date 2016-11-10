@@ -33,8 +33,16 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
                                 }
 
 #        self.actionClose.triggered.connect(self.close)
-        self.pushButton_receiver_stepper_x_move_abs.clicked.connect(self.receiver_move_x)
-
+        self.pushButton_receiver_stepper_x_move_abs.clicked.connect(self.receiver_stepper_x_move_abs)
+        self.lineEdit_receiver_stepper_x_move_abs.setValidator(QtGui.QIntValidator())
+        self.lineEdit_receiver_stepper_x_move_abs.setText('0')
+        
+        self.pushButton_receiver_stepper_x_move_rel.clicked.connect(self.receiver_stepper_x_move_rel)
+        self.lineEdit_receiver_stepper_x_move_rel.setValidator(QtGui.QIntValidator())
+        self.lineEdit_receiver_stepper_x_move_rel.setText('1')
+        
+        self.pushButton_receiver_stepper_x_home.clicked.connect(self.receiver_stepper_x_home)
+        
     def status_loop(self):
         while self.active==True:
 #            print 'status active'
@@ -53,9 +61,17 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.active=False
         self.status_t.join()
 
-    def receiver_move_x(self):
+    def receiver_stepper_x_move_abs(self):
         print("Command sent")
-        self.receiver_q.put(['move_abs_x',777],False)
+        self.receiver_q.put(['move_abs_x',int(self.lineEdit_receiver_stepper_x_move_abs.text())],False)
+        
+    def receiver_stepper_x_move_rel(self):
+        print("Command sent")
+        self.receiver_q.put(['move_rel_x',int(self.lineEdit_receiver_stepper_x_move_rel.text())],False)
+        
+    def receiver_stepper_x_home(self):
+        print("Command sent")
+        self.receiver_q.put(['home_x',0],False)
         
     def update_receiver_x(self,pos):
         self.lcdNumber_receiver_stepper_x.display(pos) 
