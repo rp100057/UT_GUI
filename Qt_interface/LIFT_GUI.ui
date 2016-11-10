@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>816</width>
-    <height>602</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,18 +19,123 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>811</width>
+      <width>801</width>
       <height>551</height>
      </rect>
     </property>
-    <widget class="QWidget" name="tab">
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="tab_general">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>General</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="tab_donor">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Donor</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_receiver_stepper">
+     <attribute name="title">
+      <string>Receiver_stepper</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>751</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>receiver_stepper_x</string>
+      </property>
+      <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_x">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>121</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_x_home">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>121</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>home</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_x_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move rel</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_receiver_stepper_x_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_receiver_stepper_x_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_x_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move abs</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_receiver_piezo">
+     <attribute name="title">
+      <string>Receiver_piezo</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_laser">
+     <attribute name="title">
+      <string>Laser</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_scripts">
+     <attribute name="title">
+      <string>Scripts</string>
      </attribute>
     </widget>
    </widget>
@@ -40,7 +145,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>816</width>
+     <width>800</width>
      <height>26</height>
     </rect>
    </property>

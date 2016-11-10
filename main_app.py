@@ -33,7 +33,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
                                 }
 
 #        self.actionClose.triggered.connect(self.close)
-        self.pushButton.clicked.connect(self.receiver_move_x)
+        self.pushButton_receiver_stepper_x_move_abs.clicked.connect(self.receiver_move_x)
 
     def status_loop(self):
         while self.active==True:
@@ -58,17 +58,15 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.receiver_q.put(['move_abs_x',777],False)
         
     def update_receiver_x(self,pos):
-        self.lcdNumber.display(pos)
+        self.lcdNumber_receiver_stepper_x.display(pos) 
         global gbl_receiver_x_pos
         gbl_receiver_x_pos=pos
                
-    def update_receiver_y(self,pos):
-        self.lcdNumber.display(pos) 
+    def update_receiver_y(self,pos):     
         global gbl_receiver_y_pos
         gbl_receiver_y_pos=pos
         
     def update_receiver_z(self,pos):
-        self.lcdNumber.display(pos) 
         global gbl_receiver_z_pos
         gbl_receiver_z_pos=pos
         
