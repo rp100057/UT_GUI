@@ -3,10 +3,14 @@ import threading
 import Queue
 import wrp_thorlabs_sbcStepper
 
-class control:
+class control_receiver:
     def __init__(self,q1,q2):
-        self.stepper_x=wrp_thorlabs_sbcStepper.wrp_thorlabs_sbcStepper("70866729")
+        self.stepper_x=wrp_thorlabs_sbcStepper.wrp_thorlabs_sbcStepper("70866729",1)
         self.stepper_x.init_axis()
+        self.stepper_y=wrp_thorlabs_sbcStepper.wrp_thorlabs_sbcStepper("70866729",2)
+        self.stepper_y.init_axis()
+        self.stepper_z=wrp_thorlabs_sbcStepper.wrp_thorlabs_sbcStepper("70866729",3)
+        self.stepper_z.init_axis()
         self.worker_q=Queue.Queue()
         self.worker_q=q1
         self.sender_q=Queue.Queue()
@@ -17,13 +21,13 @@ class control:
         self.worker_options = {
                         'move_abs_x' : self.move_abs_x,
                         'move_abs_y' : self.move_abs_y,
-                        'move_abs_y' : self.move_abs_z,
+                        'move_abs_z' : self.move_abs_z,
                         'move_rel_x' : self.move_rel_x,
                         'move_rel_y' : self.move_rel_y,
-                        'move_rel_y' : self.move_rel_z,
+                        'move_rel_z' : self.move_rel_z,
                         'home_x' : self.home_x,
                         'home_y' : self.home_y,
-                        'home_y' : self.home_z,
+                        'home_z' : self.home_z,
                        }
 
     def worker_loop(self):
@@ -61,9 +65,11 @@ class control:
         
     def home_y(self,dummy):
         print 'Home y'
+        self.stepper_y.home_axis()
         
     def home_z(self,dummy):
         print 'Home z'
+        self.stepper_z.home_axis()
         
         
     def move_abs_x(self,pos):
@@ -72,19 +78,23 @@ class control:
 
     def move_abs_y(self,pos):
         print "Moved abs y to "+str(pos)
+        self.stepper_y.move_abs(pos)
         
     def move_abs_z(self,pos):
         print "Moved abs z to "+str(pos)
+        self.stepper_z.move_abs(pos)
 
     def move_rel_x(self,delta):
         print "Relative move x of "+str(delta)
         self.stepper_x.move_rel(delta)
 
     def move_rel_y(self,delta):
-        print "Relative move y of "+str(delta)  
+        print "Relative move y of "+str(delta)
+        self.stepper_y.move_rel(delta)
         
     def move_rel_z(self,delta):
-        print "Relative move z of "+str(delta)  
+        print "Relative move z of "+str(delta)
+        self.stepper_y.move_rel(delta)
         
     def get_pos_x(self):
 #        print 'Get pos x'
@@ -92,8 +102,8 @@ class control:
         
     def get_pos_y(self):
 #        print 'Get pos y'
-        return 21
+        return self.stepper_y.get_pos()
         
     def get_pos_z(self):
 #        print 'Get pos z'
-        return 84
+        return self.stepper_z.get_pos()

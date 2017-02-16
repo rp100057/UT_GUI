@@ -9,10 +9,10 @@ import time
 
 	
 class wrp_thorlabs_sbcStepper:
-    def __init__(self,serial):
+    def __init__(self,serial,channel):
         self.sbcStepper = cdll.LoadLibrary("Thorlabs//Thorlabs.MotionControl.Benchtop.StepperMotor.dll")
         self.sn = serial #"70866729";
-        self.channel=c_short(1);
+        self.channel=c_short(channel);
         self.dt=c_int(200);
 #        self.busy = 0;
         self.status=0;

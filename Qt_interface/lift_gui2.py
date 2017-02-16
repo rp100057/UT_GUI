@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'LIFT_GUI.ui'
 #
-# Created: Thu Feb 16 12:58:01 2017
+# Created: Thu Feb 16 10:43:09 2017
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -133,9 +133,9 @@ class Ui_MainWindow(object):
         self.lcdNumber_receiver_stepper_y = QtGui.QLCDNumber(self.groupBox_receiver_stepper_y)
         self.lcdNumber_receiver_stepper_y.setGeometry(QtCore.QRect(20, 30, 121, 23))
         self.lcdNumber_receiver_stepper_y.setObjectName(_fromUtf8("lcdNumber_receiver_stepper_y"))
-        self.pushButton_receiver_stepper_y_home = QtGui.QPushButton(self.groupBox_receiver_stepper_y)
-        self.pushButton_receiver_stepper_y_home.setGeometry(QtCore.QRect(20, 60, 121, 28))
-        self.pushButton_receiver_stepper_y_home.setObjectName(_fromUtf8("pushButton_receiver_stepper_y_home"))
+        self.pushButton_receiver_stepper_y = QtGui.QPushButton(self.groupBox_receiver_stepper_y)
+        self.pushButton_receiver_stepper_y.setGeometry(QtCore.QRect(20, 60, 121, 28))
+        self.pushButton_receiver_stepper_y.setObjectName(_fromUtf8("pushButton_receiver_stepper_y"))
         self.pushButton_receiver_stepper_y_move_rel = QtGui.QPushButton(self.groupBox_receiver_stepper_y)
         self.pushButton_receiver_stepper_y_move_rel.setGeometry(QtCore.QRect(160, 60, 111, 28))
         self.pushButton_receiver_stepper_y_move_rel.setObjectName(_fromUtf8("pushButton_receiver_stepper_y_move_rel"))
@@ -189,7 +189,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -214,7 +214,7 @@ class Ui_MainWindow(object):
         self.pushButton_receiver_stepper_x_move_rel.setText(_translate("MainWindow", "move rel", None))
         self.pushButton_receiver_stepper_x_move_abs.setText(_translate("MainWindow", "move abs", None))
         self.groupBox_receiver_stepper_y.setTitle(_translate("MainWindow", "receiver_stepper_y", None))
-        self.pushButton_receiver_stepper_y_home.setText(_translate("MainWindow", "home", None))
+        self.pushButton_receiver_stepper_y.setText(_translate("MainWindow", "home", None))
         self.pushButton_receiver_stepper_y_move_rel.setText(_translate("MainWindow", "move rel", None))
         self.pushButton_receiver_stepper_y_move_abs.setText(_translate("MainWindow", "move abs", None))
         self.groupBox_receiver_stepper_z.setTitle(_translate("MainWindow", "receiver_stepper_z", None))

@@ -24,23 +24,274 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_general">
      <attribute name="title">
       <string>General</string>
      </attribute>
     </widget>
+    <widget class="QWidget" name="tab_z_stage">
+     <attribute name="title">
+      <string>z_stage</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_z_stage">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>751</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>z_stage</string>
+      </property>
+      <widget class="QLCDNumber" name="lcdNumber_z_stage">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>121</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_z_stage_home">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>121</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>home</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_z_stage_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move rel</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_z_stage_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_z_stage_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_z_stage_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move abs</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
     <widget class="QWidget" name="tab_donor">
      <attribute name="title">
       <string>Donor</string>
      </attribute>
+     <widget class="QGroupBox" name="groupBox_donor_x">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>751</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>donor_x</string>
+      </property>
+      <widget class="QLCDNumber" name="lcdNumber_donor_x">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>121</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_donor_x_home">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>121</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>home</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_donor_x_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move rel</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_donor_x_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_donor_x_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_donor_x_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move abs</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_donor_y">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>180</y>
+        <width>751</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>donor_y</string>
+      </property>
+      <widget class="QLCDNumber" name="lcdNumber_donor_y">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>121</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_donor_y_home">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>121</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>home</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_donor_y_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move rel</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_donor_y_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_donor_y_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_donor_y_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move abs</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_receiver_stepper">
      <attribute name="title">
       <string>Receiver_stepper</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBox_receiver_stepper_x">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -109,6 +360,170 @@
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_receiver_stepper_x_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move abs</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_receiver_stepper_y">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>180</y>
+        <width>751</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>receiver_stepper_y</string>
+      </property>
+      <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_y">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>121</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_y_home">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>121</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>home</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_y_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move rel</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_receiver_stepper_y_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_receiver_stepper_y_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_y_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move abs</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_receiver_stepper_z">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>350</y>
+        <width>751</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>receiver_stepper_z</string>
+      </property>
+      <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_z">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>121</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_z_home">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>121</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>home</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_z_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>move rel</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_receiver_stepper_z_move_rel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_receiver_stepper_z_move_abs">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_receiver_stepper_z_move_abs">
        <property name="geometry">
         <rect>
          <x>290</x>
