@@ -662,6 +662,19 @@
      <attribute name="title">
       <string>Scripts</string>
      </attribute>
+     <widget class="QPushButton" name="pushButton_super_print3D">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>40</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Print3D</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

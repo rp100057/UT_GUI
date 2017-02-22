@@ -18,18 +18,23 @@ from PyQt4 import QtGui
 import lift_gui
 import ctrl_receiver
 import ctrl_donor
+import ctrl_super
 import global_parameters
 
 class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
     def __init__(self):
         super(self.__class__, self).__init__()
         self.setupUi(self)  
-        
+    
         self.active=False
         self.receiver_q=Queue.Queue()
         self.status_q=Queue.Queue()
         self.donor_q=Queue.Queue()
+        self.super_q=Queue.Queue()
         self.status_t=threading.Thread(target=self.status_loop)
+        self.ctrl_super=ctrl_super.ctrl_super(self.super_q,self.status_q,self.donor_q,self.receiver_q)   
+        
+        
         self.update_options = {
                                 'update_receiver_x' : self.update_receiver_x,
                                 'update_receiver_y' : self.update_receiver_y,
@@ -72,8 +77,12 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         
         self.pushButton_donor_ctrl_start.clicked.connect(self.donor_ctrl_start)
         self.pushButton_donor_ctrl_stop.clicked.connect(self.donor_ctrl_stop)
+        self.lineEdit_donor_ctrl_status.setText('Off') 
         self.pushButton_receiver_ctrl_start.clicked.connect(self.receiver_ctrl_start)
         self.pushButton_receiver_ctrl_stop.clicked.connect(self.receiver_ctrl_stop)
+        self.lineEdit_receiver_ctrl_status.setText('Off') 
+        
+        self.pushButton_super_print3D.clicked.connect(self.super_print3D)
         
     def status_loop(self):
         while self.active==True:
@@ -88,10 +97,12 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
     def run(self):
         self.active=True
         self.status_t.start()
+        self.ctrl_super.run()
 
     def stop(self):
         self.active=False
         self.status_t.join()
+        self.ctrl_super.stop()
 
     def receiver_stepper_x_move_abs(self):
         print("Command sent")
@@ -179,7 +190,10 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
 #        self.ctrl_donor.stop()
         self.lineEdit_receiver_ctrl_status.setText('Off') 
     
-    
+    def super_print3D(self):
+        print("Command sent")
+        self.super_q.put(['print3D',0],False)        
+        
 def main():
     app = QtGui.QApplication(sys.argv)  
     form = MainApp()
