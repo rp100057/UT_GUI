@@ -47,7 +47,6 @@ switch slice_direction
         xx=xco/layer_displacement;      
         yy=yco/print_displacement;
         zz=zco/print_displacement;
-        layers=xx;
         [OUTPUTgrid] = VOXELISE(round(xx),round(yy),round(zz),stl_file,'xyz');  
         for i=1:xx
             figure
@@ -62,7 +61,6 @@ switch slice_direction
         xx=xco/print_displacement;
         yy=yco/layer_displacement;
         zz=zco/print_displacement;
-        layers=yy;
         [OUTPUTgrid] = VOXELISE(round(xx),round(yy),round(zz),stl_file,'xyz');  
         for i=1:yy
             figure
@@ -76,7 +74,7 @@ switch slice_direction
         xx=xco/print_displacement;
         yy=yco/print_displacement;
         zz=zco/layer_displacement;
-        layers=zz;
+        number
         [OUTPUTgrid] = VOXELISE(round(xx),round(yy),round(zz),stl_file,'xyz');  
         for i=1:zz
             figure
@@ -86,4 +84,4 @@ switch slice_direction
             imwrite(squeeze(OUTPUTgrid(:,:,i)),['output/array',num2str(i),'.png'])
         end
 end
-save('output/specs.mat','print_displacement','layer_displacement','layers')
+save('output/specs.mat','print_displacement','layer_displacement')

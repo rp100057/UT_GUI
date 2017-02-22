@@ -47,4 +47,10 @@ class ctrl_super:
 
         
     def print3D(self,dummy):
-        print "print something from slices"
+        print "Starting routine to print 3D part from slices"
+        print "Read specifications"
+        #load txt file that contains pixel size etc.
+        print "Move to initial conditions and set laser power"
+        print "Print slices"
+        
+        

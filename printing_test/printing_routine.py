@@ -7,12 +7,15 @@ Created on Tue Jan 31 10:09:09 2017
 
 from scipy import misc
 from termcolor import colored
-
+import scipy.io
+    
+ 
 #load parameters
-Receiver_dx=2e-6 #step from pixel to pixel in x
-Receiver_dy=2e-6 #step from pixel to pixel in y
-Receiver_dz=1e-6 #step from layer to layer in z
-steps_z=range(1,22)
+mat = scipy.io.loadmat('C:\\Users\\rpo\\Documents\\GitHub\\UT_GUI\\printing_test\\specs.mat') 
+Receiver_dx=mat['print_displacement'][0,0] #step from pixel to pixel in x [m]
+Receiver_dy=mat['print_displacement'][0,0] #step from pixel to pixel in y [m]
+Receiver_dz=mat['layer_displacement'][0,0] #step from layer to layer in z [m]
+steps_z=range(1,mat['layers'][0,0])
 
 DonorCurrentPos_x=0
 DonorCurrentPos_y=0
@@ -45,7 +48,13 @@ def new_layer():
     return True
 
 
-
+def read_specs():
+    mat = scipy.io.loadmat('C:\\Users\\rpo\\Documents\\GitHub\\UT_GUI\\printing_test\\specs.mat')
+    mat['layer_displacement'][0,0]
+    mat['print_displacement'][0,0]
+    mat['layers'][0,0]
+    
+    
 for k in steps_z:
     print k
     layer_data = misc.imread('array'+str(k)+'.png')
