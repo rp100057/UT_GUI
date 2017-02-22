@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'LIFT_GUI.ui'
 #
-# Created: Wed Feb 22 09:53:20 2017
+# Created: Wed Feb 22 09:36:59 2017
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -48,20 +48,6 @@ class Ui_MainWindow(object):
         self.label_donor_ctrl = QtGui.QLabel(self.tab_general)
         self.label_donor_ctrl.setGeometry(QtCore.QRect(90, 40, 81, 16))
         self.label_donor_ctrl.setObjectName(_fromUtf8("label_donor_ctrl"))
-        self.lineEdit_receiver_ctrl_status = QtGui.QLineEdit(self.tab_general)
-        self.lineEdit_receiver_ctrl_status.setEnabled(True)
-        self.lineEdit_receiver_ctrl_status.setGeometry(QtCore.QRect(242, 70, 71, 22))
-        self.lineEdit_receiver_ctrl_status.setReadOnly(True)
-        self.lineEdit_receiver_ctrl_status.setObjectName(_fromUtf8("lineEdit_receiver_ctrl_status"))
-        self.label_reveiver_ctrl = QtGui.QLabel(self.tab_general)
-        self.label_reveiver_ctrl.setGeometry(QtCore.QRect(240, 40, 81, 16))
-        self.label_reveiver_ctrl.setObjectName(_fromUtf8("label_reveiver_ctrl"))
-        self.pushButton_receiver_ctrl_start = QtGui.QPushButton(self.tab_general)
-        self.pushButton_receiver_ctrl_start.setGeometry(QtCore.QRect(230, 100, 93, 28))
-        self.pushButton_receiver_ctrl_start.setObjectName(_fromUtf8("pushButton_receiver_ctrl_start"))
-        self.pushButton_receiver_ctrl_stop = QtGui.QPushButton(self.tab_general)
-        self.pushButton_receiver_ctrl_stop.setGeometry(QtCore.QRect(230, 140, 93, 28))
-        self.pushButton_receiver_ctrl_stop.setObjectName(_fromUtf8("pushButton_receiver_ctrl_stop"))
         self.tabWidget.addTab(self.tab_general, _fromUtf8(""))
         self.tab_z_stage = QtGui.QWidget()
         self.tab_z_stage.setObjectName(_fromUtf8("tab_z_stage"))
@@ -225,9 +211,6 @@ class Ui_MainWindow(object):
         self.pushButton_donor_ctrl_start.setText(_translate("MainWindow", "Start", None))
         self.pushButton_donor_ctrl_stop.setText(_translate("MainWindow", "Stop", None))
         self.label_donor_ctrl.setText(_translate("MainWindow", "Donor_ctrl", None))
-        self.label_reveiver_ctrl.setText(_translate("MainWindow", "Receiver_ctrl", None))
-        self.pushButton_receiver_ctrl_start.setText(_translate("MainWindow", "Start", None))
-        self.pushButton_receiver_ctrl_stop.setText(_translate("MainWindow", "Stop", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_general), _translate("MainWindow", "General", None))
         self.groupBox_z_stage.setTitle(_translate("MainWindow", "z_stage", None))
         self.pushButton_z_stage_home.setText(_translate("MainWindow", "home", None))
