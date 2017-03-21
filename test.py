@@ -25,8 +25,12 @@
 ##    status6=bscStepper.SBC_Close("70866729")
 #except:
 #    print status6
-import wrp_pistages
+#import wrp_pistages
+#
+#xx=wrp_pistages.wrp_pistages(1)
+#xx.init_axis()
+#xx.close_axis()
 
-xx=wrp_pistages.wrp_pistages(1)
-xx.init_axis()
-xx.close_axis()
+import wrp_RTC4
+
+test=wrp_RTC4.wrp_RTC4()

@@ -15,6 +15,9 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -140,12 +143,122 @@
        <string>Stop</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton_zstage_ctrl_stop">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>140</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_zstage_ctrl_status">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>382</x>
+        <y>70</y>
+        <width>71</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_zstage_ctrl">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>40</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>zStage_ctrl</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_zstage_ctrl_start">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>100</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_laser_ctrl">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>40</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Laser_ctrl</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_laser_ctrl_status">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>522</x>
+        <y>70</y>
+        <width>71</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_laser_ctrl_start">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>100</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_laser_ctrl_stop">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>140</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_z_stage">
      <attribute name="title">
       <string>z_stage</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox_z_stage">
+     <widget class="QGroupBox" name="groupBox_zstage">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -157,7 +270,7 @@
       <property name="title">
        <string>z_stage</string>
       </property>
-      <widget class="QLCDNumber" name="lcdNumber_z_stage">
+      <widget class="QLCDNumber" name="lcdNumber_zstage">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -167,7 +280,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_z_stage_home">
+      <widget class="QPushButton" name="pushButton_zstage_home">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -180,7 +293,7 @@
         <string>home</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_z_stage_move_rel">
+      <widget class="QPushButton" name="pushButton_zstage_move_rel">
        <property name="geometry">
         <rect>
          <x>160</x>
@@ -193,7 +306,7 @@
         <string>move rel</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_z_stage_move_rel">
+      <widget class="QLineEdit" name="lineEdit_zstage_move_rel">
        <property name="geometry">
         <rect>
          <x>160</x>
@@ -203,7 +316,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_z_stage_move_abs">
+      <widget class="QLineEdit" name="lineEdit_zstage_move_abs">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -213,7 +326,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_z_stage_move_abs">
+      <widget class="QPushButton" name="pushButton_zstage_move_abs">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -657,6 +770,114 @@
      <attribute name="title">
       <string>Laser</string>
      </attribute>
+     <widget class="QGroupBox" name="groupBox_laser">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>751</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>laser</string>
+      </property>
+      <widget class="QLCDNumber" name="lcdNumber_laser">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>121</width>
+         <height>23</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_laser_power">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>60</y>
+         <width>121</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>set Power</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_laser_singlePulse">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>90</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>single pulse</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_laser_power">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_laser_numberPulses">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_laser_multiPulse">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>60</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>multi pulse</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_laser_on">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>121</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>laser ON</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_laser_off">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>90</y>
+         <width>261</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>laser OFF</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_scripts">
      <attribute name="title">
@@ -684,7 +905,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

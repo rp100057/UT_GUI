@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'LIFT_GUI.ui'
 #
-# Created: Tue Mar 14 15:49:49 2017
+# Created: Tue Mar 14 15:26:15 2017
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -238,10 +238,10 @@ class Ui_MainWindow(object):
         self.lcdNumber_laser.setGeometry(QtCore.QRect(20, 30, 121, 23))
         self.lcdNumber_laser.setObjectName(_fromUtf8("lcdNumber_laser"))
         self.pushButton_laser_power = QtGui.QPushButton(self.groupBox_laser)
-        self.pushButton_laser_power.setGeometry(QtCore.QRect(160, 60, 121, 28))
+        self.pushButton_laser_power.setGeometry(QtCore.QRect(20, 60, 121, 28))
         self.pushButton_laser_power.setObjectName(_fromUtf8("pushButton_laser_power"))
         self.pushButton_laser_singlePulse = QtGui.QPushButton(self.groupBox_laser)
-        self.pushButton_laser_singlePulse.setGeometry(QtCore.QRect(290, 90, 111, 28))
+        self.pushButton_laser_singlePulse.setGeometry(QtCore.QRect(160, 60, 111, 28))
         self.pushButton_laser_singlePulse.setObjectName(_fromUtf8("pushButton_laser_singlePulse"))
         self.lineEdit_laser_power = QtGui.QLineEdit(self.groupBox_laser)
         self.lineEdit_laser_power.setGeometry(QtCore.QRect(160, 30, 113, 22))
@@ -253,10 +253,10 @@ class Ui_MainWindow(object):
         self.pushButton_laser_multiPulse.setGeometry(QtCore.QRect(290, 60, 111, 28))
         self.pushButton_laser_multiPulse.setObjectName(_fromUtf8("pushButton_laser_multiPulse"))
         self.pushButton_laser_on = QtGui.QPushButton(self.groupBox_laser)
-        self.pushButton_laser_on.setGeometry(QtCore.QRect(20, 60, 121, 28))
+        self.pushButton_laser_on.setGeometry(QtCore.QRect(20, 90, 121, 28))
         self.pushButton_laser_on.setObjectName(_fromUtf8("pushButton_laser_on"))
         self.pushButton_laser_off = QtGui.QPushButton(self.groupBox_laser)
-        self.pushButton_laser_off.setGeometry(QtCore.QRect(20, 90, 261, 31))
+        self.pushButton_laser_off.setGeometry(QtCore.QRect(20, 120, 121, 28))
         self.pushButton_laser_off.setObjectName(_fromUtf8("pushButton_laser_off"))
         self.tabWidget.addTab(self.tab_laser, _fromUtf8(""))
         self.tab_scripts = QtGui.QWidget()
@@ -275,7 +275,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(5)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

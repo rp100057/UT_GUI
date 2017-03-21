@@ -5,10 +5,6 @@ Created on Tue Oct 25 19:32:15 2016
 @author: Ralph
 """
 
-from pi_init import startup, waitontarget
-from pipython import GCSDevice
-
-
 import sys
 import time
 import Queue
@@ -18,8 +14,10 @@ from PyQt4 import QtGui
 import lift_gui
 import ctrl_receiver
 import ctrl_donor
+import ctrl_zstage
+import ctrl_laser
 import ctrl_super
-import global_parameters
+import global_parameter as gb
 
 class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
     def __init__(self):
@@ -30,9 +28,11 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.receiver_q=Queue.Queue()
         self.status_q=Queue.Queue()
         self.donor_q=Queue.Queue()
+        self.zstage_q=Queue.Queue()
+        self.laser_q=Queue.Queue()
         self.super_q=Queue.Queue()
         self.status_t=threading.Thread(target=self.status_loop)
-        self.ctrl_super=ctrl_super.ctrl_super(self.super_q,self.status_q,self.donor_q,self.receiver_q)   
+        self.ctrl_super=ctrl_super.ctrl_super(self.super_q,self.status_q,self.donor_q,self.receiver_q,self.zstage_q,self.laser_q)   
         
         
         self.update_options = {
@@ -40,6 +40,9 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
                                 'update_receiver_y' : self.update_receiver_y,
                                 'update_receiver_z' : self.update_receiver_z,
                                 'update_donor_x' : self.update_donor_x,
+                                'update_donor_y' : self.update_donor_y,
+                                'update_zstage' : self.update_zstage,
+                                'update_laser' : self.update_laser,
                                 }
 
 #        self.actionClose.triggered.connect(self.close)
@@ -75,12 +78,45 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.lineEdit_donor_x_move_rel.setText('0.000')     
         self.pushButton_donor_x_home.clicked.connect(self.donor_x_home)
         
+        self.pushButton_donor_y_move_abs.clicked.connect(self.donor_y_move_abs)
+        self.lineEdit_donor_y_move_abs.setValidator(QtGui.QDoubleValidator())
+        self.lineEdit_donor_y_move_abs.setText('0.000')  
+        self.pushButton_donor_y_move_rel.clicked.connect(self.donor_y_move_rel)
+        self.lineEdit_donor_y_move_rel.setValidator(QtGui.QDoubleValidator())
+        self.lineEdit_donor_y_move_rel.setText('0.000')     
+        self.pushButton_donor_y_home.clicked.connect(self.donor_y_home)
+
+        self.pushButton_zstage_move_abs.clicked.connect(self.zstage_move_abs)
+        self.lineEdit_zstage_move_abs.setValidator(QtGui.QDoubleValidator())
+        self.lineEdit_zstage_move_abs.setText('0.000')  
+        self.pushButton_zstage_move_rel.clicked.connect(self.zstage_move_rel)
+        self.lineEdit_zstage_move_rel.setValidator(QtGui.QDoubleValidator())
+        self.lineEdit_zstage_move_rel.setText('0.000')     
+        self.pushButton_zstage_home.clicked.connect(self.zstage_home)
+
+        self.pushButton_laser_power.clicked.connect(self.laser_setPower)
+        self.lineEdit_laser_power.setValidator(QtGui.QDoubleValidator())
+        self.lineEdit_laser_power.setText('0.000')  
+        self.pushButton_laser_singlePulse.clicked.connect(self.laser_singlePulse)
+        self.lineEdit_laser_numberPulses.setValidator(QtGui.QIntValidator())
+        self.lineEdit_laser_numberPulses.setText('0')     
+        self.pushButton_laser_multiPulse.clicked.connect(self.laser_multiPulse)
+        self.pushButton_laser_on.clicked.connect(self.laser_on)  
+        self.pushButton_laser_off.clicked.connect(self.laser_off)              
+        
         self.pushButton_donor_ctrl_start.clicked.connect(self.donor_ctrl_start)
         self.pushButton_donor_ctrl_stop.clicked.connect(self.donor_ctrl_stop)
         self.lineEdit_donor_ctrl_status.setText('Off') 
         self.pushButton_receiver_ctrl_start.clicked.connect(self.receiver_ctrl_start)
         self.pushButton_receiver_ctrl_stop.clicked.connect(self.receiver_ctrl_stop)
-        self.lineEdit_receiver_ctrl_status.setText('Off') 
+        self.lineEdit_receiver_ctrl_status.setText('Off')   
+        self.pushButton_zstage_ctrl_start.clicked.connect(self.zstage_ctrl_start)
+        self.pushButton_zstage_ctrl_stop.clicked.connect(self.zstage_ctrl_stop)
+        self.lineEdit_zstage_ctrl_status.setText('Off')
+        self.pushButton_laser_ctrl_start.clicked.connect(self.laser_ctrl_start)
+        self.pushButton_laser_ctrl_stop.clicked.connect(self.laser_ctrl_stop)
+        self.lineEdit_laser_ctrl_status.setText('Off') 
+  
         
         self.pushButton_super_print3D.clicked.connect(self.super_print3D)
         
@@ -104,6 +140,22 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.status_t.join()
         self.ctrl_super.stop()
 
+    def laser_setPower(self):
+        print('Set laser power')
+        self.laser_q.put(['update_laser_power',float(self.lineEdit_laser_power.text())],False)
+        
+    def laser_singlePulse(self):
+        self.laser_q.put(['single_pulse',0],False)
+        
+    def laser_multiPulse(self):
+        self.laser_q.put(['multi_pulse',int(self.lineEdit_laser_numberPulses.text())],False)
+        
+    def laser_on(self):
+        self.laser_q.put(['laser_on',0],False)
+        
+    def laser_off(self):
+        self.laser_q.put(['laser_off',0],False)
+        
     def receiver_stepper_x_move_abs(self):
         print("Command sent")
         self.receiver_q.put(['move_abs_x',float(self.lineEdit_receiver_stepper_x_move_abs.text())],False)
@@ -152,43 +204,93 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         print("Command sent")
         self.donor_q.put(['home_x',0],False)
         
+    def donor_y_move_abs(self):
+        print("Command sent")
+        self.donor_q.put(['move_abs_y',float(self.lineEdit_donor_y_move_abs.text())],False)
+        
+    def donor_y_move_rel(self):
+        print("Command sent")
+        self.donor_q.put(['move_rel_y',float(self.lineEdit_donor_y_move_rel.text())],False)
+        
+    def donor_y_home(self):
+        print("Command sent")
+        self.donor_q.put(['home_y',0],False)
+        
+    def zstage_move_abs(self):
+        print("Command sent")
+        self.zstage_q.put(['move_abs_z',float(self.lineEdit_zstage_move_abs.text())],False)
+        
+    def zstage_move_rel(self):
+        print("Command sent")
+        self.zstage_q.put(['move_rel_z',float(self.lineEdit_zstage_move_rel.text())],False)
+        
+    def zstage_home(self):
+        print("Command sent")
+        self.zstage_q.put(['home_z',0],False)
+        
     def update_receiver_x(self,pos):
         self.lcdNumber_receiver_stepper_x.display(pos) 
-        global gbl_receiver_x_pos
-        gbl_receiver_x_pos=pos
+        gb.gbl_receiver_x_pos=pos
                
     def update_receiver_y(self,pos):
         self.lcdNumber_receiver_stepper_y.display(pos) 
-        global gbl_receiver_y_pos
-        gbl_receiver_y_pos=pos
+        gb.gbl_receiver_y_pos=pos
         
     def update_receiver_z(self,pos):
         self.lcdNumber_receiver_stepper_z.display(pos) 
-        global gbl_receiver_z_pos
-        gbl_receiver_z_pos=pos
+        gb.gbl_receiver_z_pos=pos
         
     def update_donor_x(self,pos):
         self.lcdNumber_donor_x.display(pos) 
-        global gbl_donor_x_pos
-        gbl_donor_x_pos=pos
+        gb.gbl_donor_x_pos=pos
+        
+    def update_donor_y(self,pos):
+        self.lcdNumber_donor_y.display(pos) 
+        gb.gbl_donor_y_pos=pos
+        
+    def update_zstage(self,pos):
+        self.lcdNumber_zstage.display(pos) 
+        gb.gbl_zstage_pos=pos
+        
+    def update_laser(self,pos):
+        self.lcdNumber_laser.display(pos) 
+        gb.gbl_laser_pos=pos
         
     def donor_ctrl_start(self):
-#        self.ctrl_donor=ctrl_donor.control_donor(self.donor_q,self.status_q)
-#        self.ctrl_donor.run()
+        self.ctrl_donor=ctrl_donor.control_donor(self.donor_q,self.status_q)
+        self.ctrl_donor.run()
         self.lineEdit_donor_ctrl_status.setText('Active') 
         
     def donor_ctrl_stop(self):
-#        self.ctrl_donor.stop()
+        self.ctrl_donor.stop()
         self.lineEdit_donor_ctrl_status.setText('Off') 
         
     def receiver_ctrl_start(self):
-#        self.ctrl_receiver=ctrl_receiver.control_receiver(self.receiver_q,self.status_q)
-#        self.ctrl_receiver.run()
+        self.ctrl_receiver=ctrl_receiver.control_receiver(self.receiver_q,self.status_q)
+        self.ctrl_receiver.run()
         self.lineEdit_receiver_ctrl_status.setText('Active') 
         
     def receiver_ctrl_stop(self):
-#        self.ctrl_donor.stop()
+        self.ctrl_receiver.stop()
         self.lineEdit_receiver_ctrl_status.setText('Off') 
+    
+    def zstage_ctrl_start(self):
+        self.ctrl_zstage=ctrl_zstage.control_zstage(self.zstage_q,self.status_q)
+        self.ctrl_zstage.run()
+        self.lineEdit_zstage_ctrl_status.setText('Active') 
+        
+    def zstage_ctrl_stop(self):
+        self.ctrl_zstage.stop()
+        self.lineEdit_zstage_ctrl_status.setText('Off')  
+        
+    def laser_ctrl_start(self):
+        self.ctrl_laser=ctrl_laser.control_laser(self.laser_q,self.status_q)
+        self.ctrl_laser.run()
+        self.lineEdit_laser_ctrl_status.setText('Active') 
+        
+    def laser_ctrl_stop(self):
+        self.ctrl_laser.stop()
+        self.lineEdit_laser_ctrl_status.setText('Off') 
     
     def super_print3D(self):
         print("Command sent")

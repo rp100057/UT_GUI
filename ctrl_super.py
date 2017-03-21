@@ -10,7 +10,7 @@ import threading
 import Queue
 
 class ctrl_super:
-    def __init__(self,q1,q2,q3,q4):
+    def __init__(self,q1,q2,q3,q4,q5,q6):
         self.worker_q=Queue.Queue()
         self.worker_q=q1
         self.sender_q=Queue.Queue()
@@ -19,6 +19,10 @@ class ctrl_super:
         self.donor_q=q3
         self.receiver_q=Queue.Queue()
         self.receiver_q=q4
+        self.zstage_q=Queue.Queue()
+        self.zstage_q=q5
+        self.laser_q=Queue.Queue()
+        self.laser_q=q6
         self.active=False
         self.worker_t=threading.Thread(target=self.worker_loop)
         
