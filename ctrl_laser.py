@@ -27,7 +27,7 @@ class control_laser:
     def worker_loop(self):
         while self.active==True:
 #            print 'worker active'
-            time.sleep(0.100)
+            time.sleep(0.01)
 
             if not self.worker_q.empty():        
                 item=self.worker_q.get();
@@ -37,7 +37,7 @@ class control_laser:
     def sender_loop(self): 
         while self.active==True:
 #            print 'sender active'
-            time.sleep(0.500)
+            time.sleep(0.100)
             self.sender_q.put(['update_laser',self.get_laser_power()],False)
         
     def run(self):

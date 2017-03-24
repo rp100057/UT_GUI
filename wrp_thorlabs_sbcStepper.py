@@ -20,22 +20,45 @@ class wrp_thorlabs_sbcStepper:
 #        self.velConv = 766618 # 766618 digits/mm/s
 #        self.accConv = 261 # 261 digits/mm/s/s
 #        self.pos = 6 #mm
-#        self.vel = 2 #mm/s
-#        self.acc = 1 #mm/s/s
+        self.vel = c_long(109936640) #2.5 mm/s
+        self.acc = c_long(45061) #5 mm/s/s
     
     def wait_axis(self):
-        try:       
-            self.status=0
+        
+        try:
+#            print '--------- NEW -----------'
+#            print self.sbcStepper.SBC_GetStatusBits(self.sn,self.channel) & 0x00000010
+#            print self.sbcStepper.SBC_GetStatusBits(self.sn,self.channel) & 0x00000020
+#            print '---------'
+
+#            time.sleep(0.1)
+#            print self.sbcStepper.SBC_GetStatusBits(self.sn,self.channel) & 0x00000010
+#            print self.sbcStepper.SBC_GetStatusBits(self.sn,self.channel) & 0x00000020
+#            print '---------'
+            buff=0
+            t=time.clock()
+            while self.sbcStepper.SBC_GetStatusBits(self.sn,self.channel) & 0x00000010 != 0 or self.sbcStepper.SBC_GetStatusBits(self.sn,self.channel) & 0x00000020 != 0 or buff == 0:        
+               if self.sbcStepper.SBC_GetStatusBits(self.sn,self.channel) & 0x00000010 != 0 or self.sbcStepper.SBC_GetStatusBits(self.sn,self.channel) & 0x00000020 !=0:
+                   buff = 1
+               if time.clock()-t > 2:
+                   buff = 1
+               time.sleep(0.01)
         except:
             print "Error occured during \"wait_axis\"!"
-        return    
+        return time.clock()-t      
     
     def init_axis(self):
         try:
             self.sbcStepper.TLI_BuildDeviceList()
             self.sbcStepper.SBC_Open(self.sn)
             self.sbcStepper.SBC_LoadSettings(self.sn,self.channel)
-            self.sbcStepper.SBC_StartPolling(self.sn,self.channel,self.dt)  
+            self.sbcStepper.SBC_StartPolling(self.sn,self.channel,self.dt)
+            self.sbcStepper.SBC_SetVelParams(self.sn,self.channel, self.acc, self.vel);
+            acc=c_long()
+            vel=c_long()
+            self.sbcStepper.SBC_GetVelParams(self.sn,self.channel,byref(acc),byref(vel))
+            print acc
+            print vel
         except:
             print "Error occured during \"init_axis\"!"
         return self.status
@@ -59,6 +82,8 @@ class wrp_thorlabs_sbcStepper:
         try:
             pos=int(x*self.posConv)
             self.sbcStepper.SBC_MoveToPosition(self.sn,self.channel,pos)
+#            t=self.wait_axis()
+#            print t
         except:
             print "Error occured during \"move_axisAbs\"!"
         return   
@@ -67,6 +92,8 @@ class wrp_thorlabs_sbcStepper:
         try:
             pos=int(x*self.posConv)
             self.sbcStepper.SBC_MoveRelative(self.sn,self.channel,pos)
+#            t=self.wait_axis()
+#            print t
         except:
             print "Error occured during \"move_axisRel\"!"
     

@@ -11,7 +11,7 @@ import scipy.io
     
  
 #load parameters
-mat = scipy.io.loadmat('C:\\Users\\rpo\\Documents\\GitHub\\UT_GUI\\printing_test\\specs.mat') 
+mat = scipy.io.loadmat('C:\\Users\\Administrator\\Desktop\\UT_GUI\\printing_test\\specs.mat') 
 Receiver_dx=mat['print_displacement'][0,0] #step from pixel to pixel in x [m]
 Receiver_dy=mat['print_displacement'][0,0] #step from pixel to pixel in y [m]
 Receiver_dz=mat['layer_displacement'][0,0] #step from layer to layer in z [m]
@@ -49,7 +49,7 @@ def new_layer():
 
 
 def read_specs():
-    mat = scipy.io.loadmat('C:\\Users\\rpo\\Documents\\GitHub\\UT_GUI\\printing_test\\specs.mat')
+    mat = scipy.io.loadmat('C:\\Users\\Administrator\\Desktop\\UT_GUI\\printing_test\\specs.mat') 
     mat['layer_displacement'][0,0]
     mat['print_displacement'][0,0]
     mat['layers'][0,0]
@@ -64,7 +64,7 @@ for k in steps_z:
         for j in range(1,steps_y):
             if(layer_data[i,j]):
                 move_receiver(i,j)
-                release_laser()
-                refresh_donor()
+#                release_laser()
+#                refresh_donor()
                 
     new_layer()

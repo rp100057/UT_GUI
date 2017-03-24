@@ -33,7 +33,7 @@ class control_receiver:
     def worker_loop(self):
         while self.active==True:
 #            print 'worker active'
-            time.sleep(0.100)
+            time.sleep(0.01)
 
             if not self.worker_q.empty():        
                 item=self.worker_q.get();
@@ -43,7 +43,7 @@ class control_receiver:
     def sender_loop(self): 
         while self.active==True:
 #            print 'sender active'
-            time.sleep(0.500)
+            time.sleep(0.1)
             self.sender_q.put(['update_receiver_x',self.get_pos_x()],False)
             self.sender_q.put(['update_receiver_y',self.get_pos_y()],False)
             self.sender_q.put(['update_receiver_z',self.get_pos_z()],False)

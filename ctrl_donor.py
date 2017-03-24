@@ -28,7 +28,7 @@ class control_donor:
     def worker_loop(self):
         while self.active==True:
 #            print 'worker active'
-            time.sleep(0.100)
+            time.sleep(0.01)
 
             if not self.worker_q.empty():        
                 item=self.worker_q.get();
@@ -38,7 +38,7 @@ class control_donor:
     def sender_loop(self): 
         while self.active==True:
 #            print 'sender active'
-            time.sleep(0.200)
+            time.sleep(0.10)
             self.sender_q.put(['update_donor_x',self.get_pos_x()],False)
             self.sender_q.put(['update_donor_y',self.get_pos_y()],False)
                       

@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_general">
      <attribute name="title">
@@ -303,7 +303,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move rel</string>
+        <string>move rel [mm]</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_zstage_move_rel">
@@ -336,7 +336,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move abs</string>
+        <string>move abs [mm]</string>
        </property>
       </widget>
      </widget>
@@ -390,7 +390,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move rel</string>
+        <string>move rel [mm]</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_donor_x_move_rel">
@@ -423,7 +423,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move abs</string>
+        <string>move abs [mm]</string>
        </property>
       </widget>
      </widget>
@@ -472,7 +472,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move rel</string>
+        <string>move rel [mm]</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_donor_y_move_rel">
@@ -505,7 +505,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move abs</string>
+        <string>move abs [mm]</string>
        </property>
       </widget>
      </widget>
@@ -559,7 +559,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move rel</string>
+        <string>move rel [mm]</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_receiver_stepper_x_move_rel">
@@ -592,7 +592,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move abs</string>
+        <string>move abs [mm]</string>
        </property>
       </widget>
      </widget>
@@ -641,7 +641,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move rel</string>
+        <string>move rel [mm]</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_receiver_stepper_y_move_rel">
@@ -674,7 +674,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move abs</string>
+        <string>move abs [mm]</string>
        </property>
       </widget>
      </widget>
@@ -723,7 +723,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move rel</string>
+        <string>move rel [mm]</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_receiver_stepper_z_move_rel">
@@ -756,7 +756,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>move abs</string>
+        <string>move abs [mm]</string>
        </property>
       </widget>
      </widget>
@@ -802,7 +802,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>set Power</string>
+        <string>set Power [%]</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_laser_singlePulse">
@@ -823,7 +823,7 @@
         <rect>
          <x>160</x>
          <y>30</y>
-         <width>113</width>
+         <width>121</width>
          <height>22</height>
         </rect>
        </property>
@@ -848,7 +848,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>multi pulse</string>
+        <string>multi pulse [#]</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_laser_on">
@@ -875,6 +875,45 @@
        </property>
        <property name="text">
         <string>laser OFF</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>10</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Power setpoint</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>10</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Number of Pulses</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>10</y>
+         <width>46</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Power</string>
        </property>
       </widget>
      </widget>
