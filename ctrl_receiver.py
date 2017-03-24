@@ -47,6 +47,7 @@ class control_receiver:
             self.sender_q.put(['update_receiver_x',self.get_pos_x()],False)
             self.sender_q.put(['update_receiver_y',self.get_pos_y()],False)
             self.sender_q.put(['update_receiver_z',self.get_pos_z()],False)
+            self.sender_q.put(['alive_receiver',0],False)
         
                 
     def run(self):

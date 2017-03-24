@@ -41,6 +41,7 @@ class control_donor:
             time.sleep(0.10)
             self.sender_q.put(['update_donor_x',self.get_pos_x()],False)
             self.sender_q.put(['update_donor_y',self.get_pos_y()],False)
+            self.sender_q.put(['alive_donor',0],False)
                       
     def run(self):
          self.active=True

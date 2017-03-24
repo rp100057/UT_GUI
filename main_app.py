@@ -34,6 +34,10 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.status_t=threading.Thread(target=self.status_loop)
         self.ctrl_super=ctrl_super.ctrl_super(self.super_q,self.status_q,self.donor_q,self.receiver_q,self.zstage_q,self.laser_q)   
         
+        self.status_laser = 999
+        self.status_donor = 999
+        self.status_receiver = 999
+        self.status_zstage = 999
         
         self.update_options = {
                                 'update_receiver_x' : self.update_receiver_x,
@@ -43,6 +47,10 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
                                 'update_donor_y' : self.update_donor_y,
                                 'update_zstage' : self.update_zstage,
                                 'update_laser' : self.update_laser,
+                                'alive_donor' : self.donor_alive,
+                                'alive_receiver' : self.receiver_alive,
+                                'alive_laser' : self.laser_alive,
+                                'alive_zstage' : self.zstage_alive,
                                 }
 
 #        self.actionClose.triggered.connect(self.close)
@@ -119,11 +127,12 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
   
         
         self.pushButton_super_print3D.clicked.connect(self.super_print3D)
-        
+      
     def status_loop(self):
         while self.active==True:
 #            print 'status active'
-            time.sleep(0.01)
+            self.ctrl_status_update()
+            time.sleep(0.005)
             
             if not self.status_q.empty():        
                 item=self.status_q.get()
@@ -140,6 +149,35 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.status_t.join()
         self.ctrl_super.stop()
 
+    def ctrl_status_update(self):
+        self.status_donor+=1
+        self.status_receiver+=1
+        self.status_laser+=1
+        self.status_zstage+=1
+        
+        if self.status_donor > 200:
+            self.lineEdit_donor_ctrl_status.setText('Off') 
+        else:
+            self.lineEdit_donor_ctrl_status.setText('Active')
+
+        if self.status_receiver > 200:
+            self.lineEdit_receiver_ctrl_status.setText('Off') 
+        else:
+            self.lineEdit_receiver_ctrl_status.setText('Active')
+
+        if self.status_zstage > 200:
+            self.lineEdit_zstage_ctrl_status.setText('Off') 
+        else:
+            self.lineEdit_zstage_ctrl_status.setText('Active')
+
+        if self.status_laser > 200:
+            self.lineEdit_laser_ctrl_status.setText('Off') 
+        else:
+            self.lineEdit_laser_ctrl_status.setText('Active')               
+       
+        
+        return 0
+      
     def laser_setPower(self):
         print('Set laser power')
         self.laser_q.put(['update_laser_power',float(self.lineEdit_laser_power.text())],False)
@@ -259,42 +297,47 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
     def donor_ctrl_start(self):
         self.ctrl_donor=ctrl_donor.control_donor(self.donor_q,self.status_q)
         self.ctrl_donor.run()
-        self.lineEdit_donor_ctrl_status.setText('Active') 
-        
+               
     def donor_ctrl_stop(self):
         self.ctrl_donor.stop()
-        self.lineEdit_donor_ctrl_status.setText('Off') 
-        
+       
     def receiver_ctrl_start(self):
         self.ctrl_receiver=ctrl_receiver.control_receiver(self.receiver_q,self.status_q)
         self.ctrl_receiver.run()
-        self.lineEdit_receiver_ctrl_status.setText('Active') 
-        
+       
     def receiver_ctrl_stop(self):
         self.ctrl_receiver.stop()
-        self.lineEdit_receiver_ctrl_status.setText('Off') 
-    
+   
     def zstage_ctrl_start(self):
         self.ctrl_zstage=ctrl_zstage.control_zstage(self.zstage_q,self.status_q)
         self.ctrl_zstage.run()
-        self.lineEdit_zstage_ctrl_status.setText('Active') 
         
     def zstage_ctrl_stop(self):
         self.ctrl_zstage.stop()
-        self.lineEdit_zstage_ctrl_status.setText('Off')  
-        
+           
     def laser_ctrl_start(self):
         self.ctrl_laser=ctrl_laser.control_laser(self.laser_q,self.status_q)
         self.ctrl_laser.run()
-        self.lineEdit_laser_ctrl_status.setText('Active') 
         
     def laser_ctrl_stop(self):
         self.ctrl_laser.stop()
-        self.lineEdit_laser_ctrl_status.setText('Off') 
-    
+   
     def super_print3D(self):
         print("Command sent")
-        self.super_q.put(['print3D',0],False)        
+        self.super_q.put(['print3D',0],False)
+
+    def donor_alive(self,dummy):
+        self.status_donor=dummy
+
+    def receiver_alive(self,dummy):
+        self.status_receiver=dummy
+
+    def laser_alive(self,dummy):
+        self.status_laser=dummy
+
+    def zstage_alive(self,dummy):
+        self.status_zstage=dummy
+        
         
 def main():
     app = QtGui.QApplication(sys.argv)  

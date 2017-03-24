@@ -37,6 +37,7 @@ class control_zstage:
 #            print 'sender active'
             time.sleep(0.100)
             self.sender_q.put(['update_zstage',self.get_pos_z()],False)
+            self.sender_q.put(['alive_zstage',0],False)
                       
     def run(self):
          self.active=True

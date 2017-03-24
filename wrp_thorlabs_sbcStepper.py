@@ -54,11 +54,11 @@ class wrp_thorlabs_sbcStepper:
             self.sbcStepper.SBC_LoadSettings(self.sn,self.channel)
             self.sbcStepper.SBC_StartPolling(self.sn,self.channel,self.dt)
             self.sbcStepper.SBC_SetVelParams(self.sn,self.channel, self.acc, self.vel);
-            acc=c_long()
-            vel=c_long()
-            self.sbcStepper.SBC_GetVelParams(self.sn,self.channel,byref(acc),byref(vel))
-            print acc
-            print vel
+#            acc=c_long()
+#            vel=c_long()
+#            self.sbcStepper.SBC_GetVelParams(self.sn,self.channel,byref(acc),byref(vel))
+#            print acc
+#            print vel
         except:
             print "Error occured during \"init_axis\"!"
         return self.status

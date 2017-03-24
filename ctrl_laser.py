@@ -39,6 +39,7 @@ class control_laser:
 #            print 'sender active'
             time.sleep(0.100)
             self.sender_q.put(['update_laser',self.get_laser_power()],False)
+            self.sender_q.put(['alive_laser',0],False)
         
     def run(self):
          self.active=True
