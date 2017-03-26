@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_general">
      <attribute name="title">
@@ -268,7 +268,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>z_stage</string>
+       <string>Z STAGE</string>
       </property>
       <widget class="QLCDNumber" name="lcdNumber_zstage">
        <property name="geometry">
@@ -361,7 +361,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>donor_x</string>
+       <string>DONOR X</string>
       </property>
       <widget class="QLCDNumber" name="lcdNumber_donor_x">
        <property name="geometry">
@@ -466,7 +466,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>donor_y</string>
+       <string>DONOR Y</string>
       </property>
       <widget class="QLCDNumber" name="lcdNumber_donor_y">
        <property name="geometry">
@@ -559,7 +559,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>receiver_stepper_x</string>
+       <string>RECEIVER X</string>
       </property>
       <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_x">
        <property name="geometry">
@@ -647,7 +647,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>receiver_stepper_y</string>
+       <string>RECEIVER Y</string>
       </property>
       <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_y">
        <property name="geometry">
@@ -735,7 +735,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>receiver_stepper_z</string>
+       <string>RECEIVER Z</string>
       </property>
       <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_z">
        <property name="geometry">
@@ -828,7 +828,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>laser</string>
+       <string>LASER</string>
       </property>
       <widget class="QLCDNumber" name="lcdNumber_laser">
        <property name="geometry">
@@ -976,18 +976,57 @@
      <attribute name="title">
       <string>| SCRIPTS |</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_super_print3D">
+     <widget class="QGroupBox" name="groupBox_scripts_print3D">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>40</y>
-        <width>93</width>
-        <height>28</height>
+        <x>30</x>
+        <y>20</y>
+        <width>741</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Print3D</string>
+      <property name="title">
+       <string>PRINT 3D</string>
       </property>
+      <widget class="QPushButton" name="pushButton_super_print3D">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>START</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_scripts_print3D_2">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>120</y>
+        <width>741</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>ENERGY SCAN</string>
+      </property>
+      <widget class="QPushButton" name="pushButton_super_energy">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>START</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

@@ -92,11 +92,11 @@ class ctrl_super:
     def read_specs(self):
         #load parameters
         self.mat = scipy.io.loadmat('C:\\Users\\Administrator\\Desktop\\UT_GUI\\printing_test\\specs.mat') 
-        self.Receiver_dx=self.mat['print_displacement'][0,0] #step from pixel to pixel in x [mm]
-        self.Receiver_dy=self.mat['print_displacement'][0,0] #step from pixel to pixel in y [mm]
-        self.Receiver_dz=-1.0*self.mat['layer_displacement'][0,0] #step from layer to layer in z [mm]
-#        self.steps_z=range(1,self.mat['layers'][0,0])
-        self.steps_z=range(1,3)
+        self.Receiver_dx=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in x [mm]
+        self.Receiver_dy=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in y [mm]
+        self.Receiver_dz=-1.0*self.mat['layer_displacement'][0,0]*1e3 #step from layer to layer in z [mm]
+        self.steps_z=range(1,self.mat['layers'][0,0])
+#        self.steps_z=range(1,3)
         
     def print3D(self,dummy):
         print "Starting routine to print 3D part from slices"
