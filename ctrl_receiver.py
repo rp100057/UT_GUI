@@ -2,6 +2,7 @@ import time
 import threading
 import Queue
 import wrp_thorlabs_sbcStepper
+import global_parameter as gb
 
 class control_receiver:
     def __init__(self,q1,q2):
@@ -74,28 +75,46 @@ class control_receiver:
         
         
     def move_abs_x(self,pos):
-        print "Moved abs x to "+str(pos)
-        self.stepper_x.move_abs(pos)
+        if pos < gb.gbl_receiver_x_lim_up and pos >  gb.gbl_receiver_x_lim_down:
+            print "Moved abs x to "+str(pos)
+            self.stepper_x.move_abs(pos)
+        else:
+            print "OUT OF LIMITS"
 
     def move_abs_y(self,pos):
-        print "Moved abs y to "+str(pos)
-        self.stepper_y.move_abs(pos)
+        if pos < gb.gbl_receiver_y_lim_up and pos >  gb.gbl_receiver_y_lim_down:
+            print "Moved abs y to "+str(pos)
+            self.stepper_y.move_abs(pos)
+        else:
+            print "OUT OF LIMITS"
         
     def move_abs_z(self,pos):
-        print "Moved abs z to "+str(pos)
-        self.stepper_z.move_abs(pos)
+        if pos < gb.gbl_receiver_z_lim_up and pos >  gb.gbl_receiver_z_lim_down:
+            print "Moved abs z to "+str(pos)
+            self.stepper_z.move_abs(pos)
+        else:
+            print "OUT OF LIMITS"
 
     def move_rel_x(self,delta):
-        print "Relative move x of "+str(delta)
-        self.stepper_x.move_rel(delta)
+        if gb.gbl_receiver_x_pos+delta < gb.gbl_receiver_x_lim_up and gb.gbl_receiver_x_pos+delta >  gb.gbl_receiver_x_lim_down: 
+            print "Relative move x of "+str(delta)
+            self.stepper_x.move_rel(delta)
+        else:
+            print "OUT OF LIMITS"
 
     def move_rel_y(self,delta):
-        print "Relative move y of "+str(delta)
-        self.stepper_y.move_rel(delta)
+        if gb.gbl_receiver_y_pos+delta < gb.gbl_receiver_y_lim_up and gb.gbl_receiver_y_pos+delta >  gb.gbl_receiver_y_lim_down: 
+            print "Relative move y of "+str(delta)
+            self.stepper_y.move_rel(delta)
+        else:
+            print "OUT OF LIMITS"
         
     def move_rel_z(self,delta):
-        print "Relative move z of "+str(delta)
-        self.stepper_y.move_rel(delta)
+        if gb.gbl_receiver_z_pos+delta < gb.gbl_receiver_z_lim_up and gb.gbl_receiver_z_pos+delta >  gb.gbl_receiver_z_lim_down: 
+            print "Relative move z of "+str(delta)
+            self.stepper_y.move_rel(delta)
+        else:
+            print "OUT OF LIMITS"
         
     def get_pos_x(self):
 #        print 'Get pos x'
