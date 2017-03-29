@@ -34,6 +34,11 @@ class ctrl_super:
         self.worker_options = {
                         'print3D' : self.print3D
                        }
+        self.direction=1
+        self.condition = { 1 : gb.gbl_donor_x_refresh_bound,
+                          -1 : 0
+                          }
+        self.pause=False
         
     def worker_loop(self):
         while self.active==True:
@@ -64,12 +69,11 @@ class ctrl_super:
     def refresh_donor(self):
         print 'Refresh Donor'
                 
-        if(self.direction*self.DonorCurrentPos_x <= self.condition[self.direction]):
-            self.donor_q.put(['move_rel_x',self.direction*self.Donor_delta],False)
-            self.DonorCurrentPos_x=self.DonorCurrentPos_x+self.direction*self.Donor_delta
+        if(self.direction*gb.gbl_donor_x_pos <= self.condition[self.direction]):
+            self.donor_q.put(['move_rel_x',self.direction*gb.gbl_donor_refresh_distance],False)
+
         else:
-            self.donor_q.put(['move_rel_y',self.Donor_delta],False)
-            self.DonorCurrentPos_y+self.Donor_delta
+            self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
             self.direction=-1*self.direction
 #        time.sleep(1)    
         
@@ -95,41 +99,60 @@ class ctrl_super:
         self.Receiver_dx=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in x [mm]
         self.Receiver_dy=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in y [mm]
         self.Receiver_dz=-1.0*self.mat['layer_displacement'][0,0]*1e3 #step from layer to layer in z [mm]
-        self.steps_z=range(1,self.mat['layers'][0,0])
+        self.steps_z=range(1,self.mat['layers'][0,0]+1)
 #        self.steps_z=range(1,3)
         
     def print3D(self,dummy):
         print "Starting routine to print 3D part from slices"
-        print "Read specifications"
         
-        self.DonorCurrentPos_x=0 #mm
-        self.DonorCurrentPos_y=0 #mm
-        self.Donor_delta=30e-3 #mm
-        self.DonorBound_x=2 #mm
-        self.DonorBound_y=2 #mm
-        self.direction=1
-        self.condition = { 1 : self.DonorBound_x,
-                          -1 : 0
-                          }      
+        print "Read specifications"
         self.read_specs()
         #load txt file that contains pixel size etc.
         print "Move to initial conditions and set laser power"
+        self.laser_q.put(['update_laser_power',dummy],False)        
+        
         print "Print slices"
         for k in self.steps_z:
             print k
-            layer_data = misc.imread('C:\\Users\\Administrator\\Desktop\\UT_GUI\\printing_test\\array'+str(k)+'.png')
+            layer_data = misc.imread('C:\\Users\\Administrator\\Desktop\\UT_GUI\\printing_test\\array'+str(k)+'.png','L')
             [steps_x,steps_y]=layer_data.shape
             
-            for i in range(1,steps_x):
-                for j in range(1,steps_y):
-                    if(layer_data[i,j]):
+            for i in range(0,steps_x):
+                for j in range(0,steps_y):
+                    if layer_data[i,j]:
                         t=time.clock()
                         self.move_receiver(i,j)
-                        time.sleep(0.3) # to be adjusted
+                        time.sleep(0.5) # to be adjusted
                         self.release_laser()
                         self.refresh_donor()                  
                         print 'time needed: ' + str(time.clock()-t)
+                        while self.pause:
+                            time.sleep(0.1)
                         
             self.new_layer()
 
+    def energy(self,dummy):
+        print "Starting Energy Scan"
         
+        
+        #load txt file that contains pixel size etc.
+        print "Move to initial conditions and set laser power"
+        energy_min=0
+        energy_max=100
+        delta=10
+        
+        spatial=0.05 #mm
+        steps_per_energy=5
+        print "Print slices"
+        
+        for i in range(energy_min,energy_max+delta,delta):
+            self.laser_q.put(['update_laser_power',i],False) 
+            
+            for j in range(0,steps_per_energy):
+                self.release_laser()
+                self.receiver_q.put(['move_rel_x',spatial],False)
+                self.refresh_donor()
+                
+            self.receiver_q.put(['move_rel_y',spatial],False)
+
+                        

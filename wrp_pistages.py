@@ -140,7 +140,7 @@ def startuphydra(CONTROLLERNAME, STAGES, REFMODE):
     
     with GCSDevice(CONTROLLERNAME) as pidevice: #select the right DLL to use with the controller
 
-        pidevice.ConnectRS232(comport=5, baudrate=115200)
+        pidevice.ConnectRS232(comport=3, baudrate=115200)
         
         
         
@@ -301,7 +301,7 @@ class wrp_pistages:
         
         if (controller=='Hydra'):
             startuphydra('Hydra',('68409121','68409121') ,('FNL', 'FNL'))
-            self.piXYstages.ConnectRS232(comport=5, baudrate=115200)
+            self.piXYstages.ConnectRS232(comport=3, baudrate=115200)
 
         elif (controller=='MERCURY'):
            startupmercury('C-863.11','M-511K112','FRF')

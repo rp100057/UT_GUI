@@ -324,7 +324,8 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
    
     def super_print3D(self):
         print("Command sent")
-        self.super_q.put(['print3D',0],False)
+        arg=float(self.lineEdit_super_print3D_laserPower.text())
+        self.super_q.put(['print3D',arg],False)
 
     def donor_alive(self,dummy):
         self.status_donor=dummy
