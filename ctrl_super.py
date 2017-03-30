@@ -12,8 +12,9 @@ import global_parameter as gb
 import numpy as np
 
 from scipy import misc
-from termcolor import colored
+#from termcolor import colored
 import scipy.io
+import os
 
 class ctrl_super:
     def __init__(self,q1,q2,q3,q4,q5,q6):
@@ -31,6 +32,7 @@ class ctrl_super:
         self.laser_q=q6
         self.active=False
         self.worker_t=threading.Thread(target=self.worker_loop)
+        self.cwd = os.getcwd()        
         
         self.worker_options = {
                         'print3D' : self.print3D,
@@ -64,13 +66,13 @@ class ctrl_super:
     #release single laser pulse with specific power setting
     def release_laser(self):
         time.sleep(0.5) # to be adjusted
-        print colored('Fire Laser','red')    
+#        print colored('Fire Laser','red')    
         self.laser_q.put(['single_pulse',0],False) 
         return True
 
     # refresh in a simple array like mannor; keep track of used areas
     def refresh_donor(self):
-        print 'Refresh Donor'
+#        print 'Refresh Donor'
                 
         if(self.direction*gb.gbl_donor_x_pos <= self.condition[self.direction]):
             self.donor_q.put(['move_rel_x',self.direction*gb.gbl_donor_refresh_distance],False)
@@ -83,8 +85,8 @@ class ctrl_super:
         
     #move receiver to correct coordinate; dont move each step, only to the position of the next print dot
     def move_receiver(self,x,y):
-        print '=== Move Receiver to ==='
-        print x*self.Receiver_dx,y*self.Receiver_dy
+#        print '=== Move Receiver to ==='
+#        print x*self.Receiver_dx,y*self.Receiver_dy
         self.receiver_q.put(['move_abs_x',x*self.Receiver_dx],False)
         self.receiver_q.put(['move_abs_y',y*self.Receiver_dy],False)
 #        time.sleep(1)
@@ -98,7 +100,7 @@ class ctrl_super:
         
     def read_specs(self):
         #load parameters
-        self.mat = scipy.io.loadmat('C:\\Users\\rpo\\Documents\\GitHub\\UT_GUI\\printing_test\\specs.mat') 
+        self.mat = scipy.io.loadmat(self.cwd+'\\printing_test\\specs.mat') 
         self.Receiver_dx=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in x [mm]
         self.Receiver_dy=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in y [mm]
         self.Receiver_dz=-1.0*self.mat['layer_displacement'][0,0]*1e3 #step from layer to layer in z [mm]
@@ -116,7 +118,7 @@ class ctrl_super:
         
         print "Print slices"
         for k in self.steps_z:
-            layer_data = misc.imread('C:\\Users\\rpo\\Documents\\GitHub\\UT_GUI\\printing_test\\array'+str(k)+'.png','L')
+            layer_data = misc.imread(self.cwd+'\\printing_test\\array'+str(k)+'.png','L')
             [steps_x,steps_y]=layer_data.shape
             
             for i in np.arange(0,steps_x):                                 
@@ -141,18 +143,17 @@ class ctrl_super:
 
     def energy(self,dummy):
         print "Starting Energy Scan"
-        #dummy [min,max,delta]
+        #dummy [min,max,delta,num,spatial]
         gb.gbl_super_stop = False
         energy_min=dummy[0]
         energy_max=dummy[1]
-        delta=dummy[2]       
-        spatial_step=0.05 #mm
-        steps_per_energy=10
+        delta=dummy[2] 
+        steps_per_energy=dummy[3] 
+        spatial_step=dummy[4]  #mm
         k=1
         
         for i in np.arange(energy_min,energy_max+delta,delta):
-            self.laser_q.put(['update_laser_power',i],False) 
-            
+            self.laser_q.put(['update_laser_power',i],False)      
             for j in np.arange(0,steps_per_energy):
                 if gb.gbl_super_stop:
                     break
@@ -161,7 +162,7 @@ class ctrl_super:
                 self.release_laser()
                 self.receiver_q.put(['move_rel_x',k*spatial_step],False)
                 self.refresh_donor()
-                
+            
             if gb.gbl_super_stop:
                     break    
             self.receiver_q.put(['move_rel_y',spatial_step],False)
@@ -169,21 +170,21 @@ class ctrl_super:
         print '==== ROUTINE FINISHED ===='
         
     def focus(self,dummy):
-        print "Starting Energy Scan"
+        print "Starting Focus Scan"
         #dummy [min,max,delta,laser_power]
         gb.gbl_super_stop = False
         z_min=dummy[0]
         z_max=dummy[1]
         z_delta=dummy[2]
         laser_power=dummy[3]
-        spatial_step=0.05 #mm
-        steps_per_z=10
+        steps_per_z=dummy[4]
+        spatial_step=dummy[5] #mm
         marking_offset=4
         k=1
         self.laser_q.put(['update_laser_power',laser_power],False) 
         
         for i in np.arange(z_min,z_max+z_delta,z_delta):
-            for j in range(0,steps_per_z):
+            for j in np.arange(0,steps_per_z):
                 if gb.gbl_super_stop:
                     break
                 while gb.gbl_super_pause:
@@ -204,5 +205,6 @@ class ctrl_super:
                 self.donor_q.put(['move_rel_x',-1*(marking_offset+number_of_markings)*k*spatial_step],False)   
             
             self.donor_q.put(['move_rel_y',spatial_step],False)
-            k=-1*k    
+            k=-1*k
+            self.zstage_q.put(['move_abs_z',i],False)
         print '==== ROUTINE FINISHED ===='

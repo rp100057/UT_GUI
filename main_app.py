@@ -179,7 +179,6 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
             self.lineEdit_laser_ctrl_status.setText('Off') 
         else:
             self.lineEdit_laser_ctrl_status.setText('Active')               
-       
         
         return 0
       
@@ -350,7 +349,9 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         energy_min=float(self.lineEdit_super_energy_laser_min.text())
         energy_max=float(self.lineEdit_super_energy_laser_max.text())
         delta=float(self.lineEdit_super_energy_laser_delta.text())
-        arg=[energy_min,energy_max,delta]
+        number=float(self.lineEdit_super_energy_number.text())
+        spatial=float(self.lineEdit_super_energy_spatial.text())
+        arg=[energy_min,energy_max,delta,number,spatial]
         
         self.super_q.put(['energy',arg],False) 
     
@@ -361,7 +362,9 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         z_max=float(self.lineEdit_super_focus_z_max.text())
         z_delta=float(self.lineEdit_super_focus_z_delta.text())
         laser_power = float(self.lineEdit_super_focus_power.text())
-        arg=[z_min,z_max,z_delta,laser_power]
+        number=float(self.lineEdit_super_focus_number.text())
+        spatial=float(self.lineEdit_super_focus_spatial.text())
+        arg=[z_min,z_max,z_delta,laser_power,number,spatial]
         
         self.super_q.put(['focus',arg],False)
         
