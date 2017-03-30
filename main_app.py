@@ -125,8 +125,13 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.pushButton_laser_ctrl_stop.clicked.connect(self.laser_ctrl_stop)
         self.lineEdit_laser_ctrl_status.setText('Off') 
   
-        
         self.pushButton_super_print3D.clicked.connect(self.super_print3D)
+        self.pushButton_super_energy.clicked.connect(self.super_energy)
+        self.pushButton_super_focus.clicked.connect(self.super_focus)
+        self.pushButton_super_pause.clicked.connect(self.super_pause)
+        self.pushButton_super_stop.clicked.connect(self.super_stop)
+        
+        
       
     def status_loop(self):
         while self.active==True:
@@ -321,11 +326,6 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         
     def laser_ctrl_stop(self):
         self.ctrl_laser.stop()
-   
-    def super_print3D(self):
-        print("Command sent")
-        arg=float(self.lineEdit_super_print3D_laserPower.text())
-        self.super_q.put(['print3D',arg],False)
 
     def donor_alive(self,dummy):
         self.status_donor=dummy
@@ -338,8 +338,46 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
 
     def zstage_alive(self,dummy):
         self.status_zstage=dummy
+    
+    def super_print3D(self):
+        print("Command sent")
+        arg=float(self.lineEdit_super_print3D_laserPower.text())
+        self.super_q.put(['print3D',arg],False)
+    
+    def super_energy(self):
+        print("Command sent")
         
+        energy_min=float(self.lineEdit_super_energy_laser_min.text())
+        energy_max=float(self.lineEdit_super_energy_laser_max.text())
+        delta=float(self.lineEdit_super_energy_laser_delta.text())
+        arg=[energy_min,energy_max,delta]
         
+        self.super_q.put(['energy',arg],False) 
+    
+    def super_focus(self):
+        print("Command sent")
+        
+        z_min=float(self.lineEdit_super_focus_z_min.text())
+        z_max=float(self.lineEdit_super_focus_z_max.text())
+        z_delta=float(self.lineEdit_super_focus_z_delta.text())
+        laser_power = float(self.lineEdit_super_focus_power.text())
+        arg=[z_min,z_max,z_delta,laser_power]
+        
+        self.super_q.put(['focus',arg],False)
+        
+    def super_pause(self):
+        print("Command sent")
+        gb.gbl_super_pause = not gb.gbl_super_pause
+        if gb.gbl_super_pause:
+            self.pushButton_super_pause.setText('RESUME')
+        else:
+            self.pushButton_super_pause.setText('PAUSE')
+            
+    def super_stop(self):
+        print("Command sent")
+        gb.gbl_super_stop = not gb.gbl_super_stop
+        
+    
 def main():
     app = QtGui.QApplication(sys.argv)  
     form = MainApp()

@@ -34,3 +34,5 @@ gbl_laser_power_lim_up = 100.0
 gbl_donor_x_refresh_bound = 30
 gbl_donor_y_refresh_bound = 15
 gbl_donor_refresh_distance=0.05 #mm
+gbl_super_pause = False
+gbl_super_stop = False
