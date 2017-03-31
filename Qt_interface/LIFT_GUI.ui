@@ -282,6 +282,9 @@
        <string>GLOBAL PARAMETER</string>
       </property>
       <widget class="QPushButton" name="pushButton_global">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>380</x>
@@ -295,6 +298,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_global">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>250</x>
@@ -1563,31 +1569,102 @@
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_super_pause">
+     <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>450</y>
-        <width>121</width>
-        <height>41</height>
+        <x>30</x>
+        <y>400</y>
+        <width>741</width>
+        <height>101</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PAUSE</string>
+      <property name="title">
+       <string>SCRIPT CONTROL</string>
       </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_super_stop">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>450</y>
-        <width>121</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>STOP</string>
-      </property>
+      <widget class="QLabel" name="label_17">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>60</y>
+         <width>53</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>[min]</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_super_time">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>330</x>
+         <y>60</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_super_perc">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>330</x>
+         <y>30</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_16">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>30</y>
+         <width>53</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>[%]</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_super_stop">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>30</y>
+         <width>131</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>STOP</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_super_pause">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>131</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PAUSE</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

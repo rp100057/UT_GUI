@@ -32,7 +32,10 @@ class ctrl_super:
         self.laser_q=q6
         self.active=False
         self.worker_t=threading.Thread(target=self.worker_loop)
+        self.sender_t=threading.Thread(target=self.sender_loop)
         self.cwd = os.getcwd()        
+        self.progress_current = 1.0
+        self.progress_total = 1.0       
         
         self.worker_options = {
                         'print3D' : self.print3D,
@@ -53,14 +56,25 @@ class ctrl_super:
                 item=self.worker_q.get();
                 self.worker_options[item[0]](item[1])
                 self.worker_q.task_done()
+    
+    def sender_loop(self): 
+        while self.active==True:
+#            print 'sender active'
+            time.sleep(0.5)
+            perc= self.progress_current/self.progress_total*100.0
+            est_time = (self.progress_total-self.progress_current)*gb.gbl_super_settling_delay/60.0
+            arg=[perc,est_time]
+            self.sender_q.put(['update_super',arg],False)    
             
     def run(self):
          self.active=True
          self.worker_t.start()
+         self.sender_t.start()
 
     def stop(self):
         self.active=False
         self.worker_t.join()
+        self.sender_t.join()
         
     def release_laser(self):
         time.sleep(gb.gbl_super_settling_delay) 
@@ -104,15 +118,20 @@ class ctrl_super:
         self.read_specs()
         #load txt file that contains pixel size etc.
         print "Move to initial conditions and set laser power"
-        self.laser_q.put(['update_laser_power',dummy],False)        
-          
+        self.laser_q.put(['update_laser_power',dummy],False)
+
+        layer_data = misc.imread(self.cwd+'\\printing_test\\array'+str(1)+'.png','L')
+        [steps_x,steps_y]=layer_data.shape        
+        self.progress_total = (steps_x)*(steps_y)*max(self.steps_z)
+        
         for k in self.steps_z:
             print "Print slice number: "+str(k)
             layer_data = misc.imread(self.cwd+'\\printing_test\\array'+str(k)+'.png','L')
             [steps_x,steps_y]=layer_data.shape
             
             for i in np.arange(0,steps_x):                                 
-                for j in np.arange(0,steps_y):          
+                for j in np.arange(0,steps_y):
+                    self.progress_current=float(1+j+i*(steps_y)+(steps_x)*(steps_y)*(k-1))                    
                     if gb.gbl_super_stop:
                             break                    
                     while gb.gbl_super_pause:
@@ -141,10 +160,13 @@ class ctrl_super:
         steps_per_energy=dummy[3] 
         spatial_step=dummy[4]  #mm
         k=1
+        self.progress_total = ((energy_max-energy_min)/delta+1)*steps_per_energy      
         
         for i in np.arange(energy_min,energy_max+delta,delta):
             self.laser_q.put(['update_laser_power',i],False)      
             for j in np.arange(0,steps_per_energy):
+                self.progress_current = (i/delta*steps_per_energy+j+1)
+                
                 if gb.gbl_super_stop:
                     break
                 while gb.gbl_super_pause:
@@ -171,10 +193,13 @@ class ctrl_super:
         spatial_step=dummy[5] #mm
         marking_offset=4
         k=1
-        self.laser_q.put(['update_laser_power',laser_power],False) 
+        self.laser_q.put(['update_laser_power',laser_power],False)
+        
+        self.progress_total = ((z_max-z_min)/z_delta+1)*steps_per_z   
         
         for i in np.arange(z_min,z_max+z_delta,z_delta):
             for j in np.arange(0,steps_per_z):
+                self.progress_current = (i/z_delta*steps_per_z+j+1)
                 if gb.gbl_super_stop:
                     break
                 while gb.gbl_super_pause:

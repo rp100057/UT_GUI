@@ -47,6 +47,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
                                 'update_donor_y' : self.update_donor_y,
                                 'update_zstage' : self.update_zstage,
                                 'update_laser' : self.update_laser,
+                                'update_super' : self.update_super,
                                 'alive_donor' : self.donor_alive,
                                 'alive_receiver' : self.receiver_alive,
                                 'alive_laser' : self.laser_alive,
@@ -186,7 +187,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         return 0
       
     def laser_setPower(self):
-        print('Set laser power')
+#        print('Set laser power')
         self.laser_q.put(['update_laser_power',float(self.lineEdit_laser_power.text())],False)
         
     def laser_singlePulse(self):
@@ -202,75 +203,75 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.laser_q.put(['laser_off',0],False)
         
     def receiver_stepper_x_move_abs(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['move_abs_x',float(self.lineEdit_receiver_stepper_x_move_abs.text())],False)
         
     def receiver_stepper_x_move_rel(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['move_rel_x',float(self.lineEdit_receiver_stepper_x_move_rel.text())],False)
         
     def receiver_stepper_x_home(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['home_x',0],False)
         
     def receiver_stepper_y_move_abs(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['move_abs_y',float(self.lineEdit_receiver_stepper_y_move_abs.text())],False)
         
     def receiver_stepper_y_move_rel(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['move_rel_y',float(self.lineEdit_receiver_stepper_y_move_rel.text())],False)
         
     def receiver_stepper_y_home(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['home_y',0],False)
         
     def receiver_stepper_z_move_abs(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['move_abs_z',float(self.lineEdit_receiver_stepper_z_move_abs.text())],False)
         
     def receiver_stepper_z_move_rel(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['move_rel_z',float(self.lineEdit_receiver_stepper_z_move_rel.text())],False)
         
     def receiver_stepper_z_home(self):
-        print("Command sent")
+#        print("Command sent")
         self.receiver_q.put(['home_z',0],False)
         
     def donor_x_move_abs(self):
-        print("Command sent")
+#        print("Command sent")
         self.donor_q.put(['move_abs_x',float(self.lineEdit_donor_x_move_abs.text())],False)
         
     def donor_x_move_rel(self):
-        print("Command sent")
+#        print("Command sent")
         self.donor_q.put(['move_rel_x',float(self.lineEdit_donor_x_move_rel.text())],False)
         
     def donor_x_home(self):
-        print("Command sent")
+#        print("Command sent")
         self.donor_q.put(['home_x',0],False)
         
     def donor_y_move_abs(self):
-        print("Command sent")
+#        print("Command sent")
         self.donor_q.put(['move_abs_y',float(self.lineEdit_donor_y_move_abs.text())],False)
         
     def donor_y_move_rel(self):
-        print("Command sent")
+#        print("Command sent")
         self.donor_q.put(['move_rel_y',float(self.lineEdit_donor_y_move_rel.text())],False)
         
     def donor_y_home(self):
-        print("Command sent")
+#        print("Command sent")
         self.donor_q.put(['home_y',0],False)
         
     def zstage_move_abs(self):
-        print("Command sent")
+#        print("Command sent")
         self.zstage_q.put(['move_abs_z',float(self.lineEdit_zstage_move_abs.text())],False)
         
     def zstage_move_rel(self):
-        print("Command sent")
+#        print("Command sent")
         self.zstage_q.put(['move_rel_z',float(self.lineEdit_zstage_move_rel.text())],False)
         
     def zstage_home(self):
-        print("Command sent")
+#        print("Command sent")
         self.zstage_q.put(['home_z',0],False)
         
     def update_receiver_x(self,pos):
@@ -300,6 +301,12 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
     def update_laser(self,pos):
         self.lcdNumber_laser.display(pos) 
         gb.gbl_laser_pos=pos
+        
+    def update_super(self,dummy):
+#        dummy = [perc,time]
+        self.lineEdit_super_perc.setText(str(int(dummy[0])))
+        self.lineEdit_super_time.setText(str(round(dummy[1],1)))
+
         
     def donor_ctrl_start(self):
         self.ctrl_donor=ctrl_donor.control_donor(self.donor_q,self.status_q)
@@ -342,13 +349,10 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.status_zstage=dummy
     
     def super_print3D(self):
-        print("Command sent")
         arg=float(self.lineEdit_super_print3D_laserPower.text())
         self.super_q.put(['print3D',arg],False)
     
     def super_energy(self):
-        print("Command sent")
-        
         energy_min=float(self.lineEdit_super_energy_laser_min.text())
         energy_max=float(self.lineEdit_super_energy_laser_max.text())
         delta=float(self.lineEdit_super_energy_laser_delta.text())
@@ -359,8 +363,6 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.super_q.put(['energy',arg],False) 
     
     def super_focus(self):
-        print("Command sent")
-        
         z_min=float(self.lineEdit_super_focus_z_min.text())
         z_max=float(self.lineEdit_super_focus_z_max.text())
         z_delta=float(self.lineEdit_super_focus_z_delta.text())
@@ -372,7 +374,6 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.super_q.put(['focus',arg],False)
         
     def super_pause(self):
-        print("Command sent")
         gb.gbl_super_pause = not gb.gbl_super_pause
         if gb.gbl_super_pause:
             self.pushButton_super_pause.setText('RESUME')
@@ -380,7 +381,6 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
             self.pushButton_super_pause.setText('PAUSE')
             
     def super_stop(self):
-        print("Command sent")
         gb.gbl_super_stop = not gb.gbl_super_stop
         
     def global_show(self):
