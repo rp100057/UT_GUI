@@ -52,7 +52,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
                                 'alive_laser' : self.laser_alive,
                                 'alive_zstage' : self.zstage_alive,
                                 }
-
+        
 #        self.actionClose.triggered.connect(self.close)
         self.pushButton_receiver_stepper_x_move_abs.clicked.connect(self.receiver_stepper_x_move_abs)
         self.lineEdit_receiver_stepper_x_move_abs.setValidator(QtGui.QDoubleValidator())
@@ -130,6 +130,9 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.pushButton_super_focus.clicked.connect(self.super_focus)
         self.pushButton_super_pause.clicked.connect(self.super_pause)
         self.pushButton_super_stop.clicked.connect(self.super_stop)
+        
+        self.comboBox_global.currentIndexChanged.connect(self.global_show)
+        self.pushButton_global.clicked.connect(self.global_set)
         
         
       
@@ -379,6 +382,16 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
     def super_stop(self):
         print("Command sent")
         gb.gbl_super_stop = not gb.gbl_super_stop
+        
+    def global_show(self):
+        self.lineEdit_global.setText(str(gb.gbl_dict[str(self.comboBox_global.currentText())]))
+        
+    def global_set(self):
+        if type (gb.gbl_dict[str(self.comboBox_global.currentText())]) is bool:
+            gb.gbl_dict[str(self.comboBox_global.currentText())] = bool(float(self.lineEdit_global.text()))       
+        else:
+            gb.gbl_dict[str(self.comboBox_global.currentText())] = float(self.lineEdit_global.text())
+
         
     
 def main():

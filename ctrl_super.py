@@ -58,33 +58,24 @@ class ctrl_super:
          self.active=True
          self.worker_t.start()
 
-    
     def stop(self):
         self.active=False
         self.worker_t.join()
         
-    #release single laser pulse with specific power setting
-    def release_laser(self):
-        time.sleep(0.5) # to be adjusted
-#        print colored('Fire Laser','red')    
+    def _release_laser(self):
+        time.sleep(gb.gbl_super_settling_delay) 
         self.laser_q.put(['single_pulse',0],False) 
         return True
 
-    # refresh in a simple array like mannor; keep track of used areas
-    def refresh_donor(self):
-#        print 'Refresh Donor'
-                
+    def _refresh_donor(self):             
         if(self.direction*gb.gbl_donor_x_pos <= self.condition[self.direction]):
             self.donor_q.put(['move_rel_x',self.direction*gb.gbl_donor_refresh_distance],False)
 
         else:
             self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
             self.direction=-1*self.direction
-#        time.sleep(1)    
-        
-        
-    #move receiver to correct coordinate; dont move each step, only to the position of the next print dot
-    def move_receiver(self,x,y):
+           
+    def _move_receiver(self,x,y):
 #        print '=== Move Receiver to ==='
 #        print x*self.Receiver_dx,y*self.Receiver_dy
         self.receiver_q.put(['move_abs_x',x*self.Receiver_dx],False)
@@ -92,13 +83,12 @@ class ctrl_super:
 #        time.sleep(1)
         return True
 
-    #layer finished, move to new layer
-    def new_layer(self):
-        print '=== New Layer ==='
+    def _new_layer(self):
+#        print '=== New Layer ==='
         self.receiver_q.put(['move_rel_z',self.Receiver_dz],False)
         return True
         
-    def read_specs(self):
+    def _read_specs(self):
         #load parameters
         self.mat = scipy.io.loadmat(self.cwd+'\\printing_test\\specs.mat') 
         self.Receiver_dx=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in x [mm]
@@ -108,16 +98,16 @@ class ctrl_super:
 #        self.steps_z=range(1,3)
         
     def print3D(self,dummy):
-        print "Starting routine to print 3D part from slices"
+        print "==== STARTING: print3D ===="
         gb.gbl_super_stop = False
-        print "Read specifications"
+        print "Read specifications from file"
         self.read_specs()
         #load txt file that contains pixel size etc.
         print "Move to initial conditions and set laser power"
         self.laser_q.put(['update_laser_power',dummy],False)        
-        
-        print "Print slices"
+          
         for k in self.steps_z:
+            print "Print slice number: "+str(k)
             layer_data = misc.imread(self.cwd+'\\printing_test\\array'+str(k)+'.png','L')
             [steps_x,steps_y]=layer_data.shape
             
@@ -139,10 +129,10 @@ class ctrl_super:
             if gb.gbl_super_stop:
                     break    
             self.new_layer()
-        print '==== ROUTINE FINISHED ===='
+        print '==== SCRIPT FINISHED ===='
 
     def energy(self,dummy):
-        print "Starting Energy Scan"
+        print "==== STARTING: energy scan ===="
         #dummy [min,max,delta,num,spatial]
         gb.gbl_super_stop = False
         energy_min=dummy[0]
@@ -167,10 +157,10 @@ class ctrl_super:
                     break    
             self.receiver_q.put(['move_rel_y',spatial_step],False)
             k=-1*k
-        print '==== ROUTINE FINISHED ===='
+        print '==== SCRIPT FINISHED ===='
         
     def focus(self,dummy):
-        print "Starting Focus Scan"
+        print "==== STARTING: focus scan ===="
         #dummy [min,max,delta,laser_power]
         gb.gbl_super_stop = False
         z_min=dummy[0]
@@ -207,4 +197,4 @@ class ctrl_super:
             self.donor_q.put(['move_rel_y',spatial_step],False)
             k=-1*k
             self.zstage_q.put(['move_abs_z',i],False)
-        print '==== ROUTINE FINISHED ===='
+        print '==== SCRIPT FINISHED ===='

@@ -269,6 +269,187 @@
        </property>
       </widget>
      </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>230</y>
+        <width>751</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>GLOBAL PARAMETER</string>
+      </property>
+      <widget class="QPushButton" name="pushButton_global">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>30</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>SET NEW VALUE</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_global">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>30</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_global">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>221</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_x_pos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_y_pos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_z_pos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_x_pos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_y_pos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_zstage_pos</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_laser_power</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_x_lim_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_x_lim_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_y_lim_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_y_lim_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_z_lim_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_receiver_z_lim_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_x_lim_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_x_lim_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_y_lim_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_y_lim_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_zstage_lim_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_zstage_lim_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_laser_power_lim_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_laser_power_lim_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_x_refresh_bound</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_y_refresh_bound</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_refresh_distance</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_super_pause</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_super_stop</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_super_settling_delay</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_z_stage">
      <attribute name="title">

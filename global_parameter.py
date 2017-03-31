@@ -36,4 +36,36 @@ gbl_donor_y_refresh_bound = 15
 gbl_donor_refresh_distance=0.05 #mm
 gbl_super_pause = False
 gbl_super_stop = False
+gbl_super_settling_delay=0.5 #s
 
+
+# Dictionary
+gbl_dict = { # STAGE POSITIONS
+            'gbl_receiver_x_pos' : gbl_receiver_x_pos,
+            'gbl_receiver_y_pos' : gbl_receiver_y_pos,
+            'gbl_receiver_z_pos' : gbl_receiver_z_pos,
+            'gbl_donor_x_pos' : gbl_donor_x_pos,
+            'gbl_donor_y_pos' : gbl_donor_y_pos,
+            'gbl_zstage_pos' : gbl_zstage_pos,
+            'gbl_laser_power' : gbl_laser_power,
+            'gbl_receiver_x_lim_down' : gbl_receiver_x_lim_down,
+            'gbl_receiver_x_lim_up' : gbl_receiver_x_lim_up,
+            'gbl_receiver_y_lim_down' : gbl_receiver_y_lim_down,
+            'gbl_receiver_y_lim_up' : gbl_receiver_y_lim_up,
+            'gbl_receiver_z_lim_down' : gbl_receiver_z_lim_down,
+            'gbl_receiver_z_lim_up' : gbl_receiver_z_lim_up,
+            'gbl_donor_x_lim_down' : gbl_donor_x_lim_down,
+            'gbl_donor_x_lim_up' : gbl_donor_x_lim_up,
+            'gbl_donor_y_lim_down' : gbl_donor_y_lim_down,
+            'gbl_donor_y_lim_up' : gbl_donor_y_lim_up,
+            'gbl_zstage_lim_down' : gbl_zstage_lim_down,
+            'gbl_zstage_lim_up' : gbl_zstage_lim_up,
+            'gbl_laser_power_lim_down' : gbl_laser_power_lim_down,
+            'gbl_laser_power_lim_up' : gbl_laser_power_lim_up,
+            'gbl_donor_x_refresh_bound' : gbl_donor_x_refresh_bound,
+            'gbl_donor_y_refresh_bound' : gbl_donor_y_refresh_bound,
+            'gbl_donor_refresh_distance' : gbl_donor_refresh_distance,
+            'gbl_super_pause' : gbl_super_pause,
+            'gbl_super_stop' : gbl_super_stop,
+            'gbl_super_settling_delay' : gbl_super_settling_delay,
+            }
