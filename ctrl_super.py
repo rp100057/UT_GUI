@@ -62,12 +62,12 @@ class ctrl_super:
         self.active=False
         self.worker_t.join()
         
-    def _release_laser(self):
+    def release_laser(self):
         time.sleep(gb.gbl_super_settling_delay) 
         self.laser_q.put(['single_pulse',0],False) 
         return True
 
-    def _refresh_donor(self):             
+    def refresh_donor(self):             
         if(self.direction*gb.gbl_donor_x_pos <= self.condition[self.direction]):
             self.donor_q.put(['move_rel_x',self.direction*gb.gbl_donor_refresh_distance],False)
 
@@ -75,7 +75,7 @@ class ctrl_super:
             self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
             self.direction=-1*self.direction
            
-    def _move_receiver(self,x,y):
+    def move_receiver(self,x,y):
 #        print '=== Move Receiver to ==='
 #        print x*self.Receiver_dx,y*self.Receiver_dy
         self.receiver_q.put(['move_abs_x',x*self.Receiver_dx],False)
@@ -83,12 +83,12 @@ class ctrl_super:
 #        time.sleep(1)
         return True
 
-    def _new_layer(self):
+    def new_layer(self):
 #        print '=== New Layer ==='
         self.receiver_q.put(['move_rel_z',self.Receiver_dz],False)
         return True
         
-    def _read_specs(self):
+    def read_specs(self):
         #load parameters
         self.mat = scipy.io.loadmat(self.cwd+'\\printing_test\\specs.mat') 
         self.Receiver_dx=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in x [mm]
