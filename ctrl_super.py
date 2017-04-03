@@ -102,36 +102,41 @@ class ctrl_super:
         self.receiver_q.put(['move_rel_z',self.Receiver_dz],False)
         return True
         
-    def read_specs(self):
+    def read_specs(self,path):
         #load parameters
-        self.mat = scipy.io.loadmat(self.cwd+'\\printing_test\\specs.mat') 
+        self.mat = scipy.io.loadmat(self.cwd+path+'specs.mat') 
         self.Receiver_dx=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in x [mm]
         self.Receiver_dy=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in y [mm]
         self.Receiver_dz=-1.0*self.mat['layer_displacement'][0,0]*1e3 #step from layer to layer in z [mm]
-        self.steps_z=range(1,self.mat['layers'][0,0]+1)
-#        self.steps_z=range(1,3)
+        self.steps_z=range(1,int(self.mat['layers'][0,0])+1)
+        self.Receiver_dimension_x = int(self.mat['dimension_x'][0,0])-1
+        self.Receiver_dimension_y = int(self.mat['dimension_y'][0,0])-1
         
     def print3D(self,dummy):
+#        dummy = [laserPower, Path]
+        laser_power = dummy[0]
+        path = dummy[1]
+        
         print "==== STARTING: print3D ===="
         gb.gbl_super_stop = False
-        print "Read specifications from file"
-        self.read_specs()
-        #load txt file that contains pixel size etc.
+        
         print "Move to initial conditions and set laser power"
-        self.laser_q.put(['update_laser_power',dummy],False)
-
-        layer_data = misc.imread(self.cwd+'\\printing_test\\array'+str(1)+'.png','L')
-        [steps_x,steps_y]=layer_data.shape        
-        self.progress_total = (steps_x)*(steps_y)*max(self.steps_z)
+        self.laser_q.put(['update_laser_power',laser_power],False)
+        
+        print "Read specifications from file"
+        self.read_specs(path)
+#        layer_data = misc.imread(self.cwd+path+'array'+str(1)+'.png','L')
+#        [steps_x,steps_y]=layer_data.shape        
+        self.progress_total = (self.Receiver_dimension_x)*(self.Receiver_dimension_y)*max(self.steps_z)
         
         for k in self.steps_z:
             print "Print slice number: "+str(k)
-            layer_data = misc.imread(self.cwd+'\\printing_test\\array'+str(k)+'.png','L')
-            [steps_x,steps_y]=layer_data.shape
+            layer_data = misc.imread(self.cwd+path+'array'+str(k)+'.png','L')
+#            [self.Receiver_dimension_x,self.Receiver_dimension_y]=layer_data.shape
             
-            for i in np.arange(0,steps_x):                                 
-                for j in np.arange(0,steps_y):
-                    self.progress_current=float(1+j+i*(steps_y)+(steps_x)*(steps_y)*(k-1))                    
+            for i in np.arange(0,self.Receiver_dimension_x):                                 
+                for j in np.arange(0,self.Receiver_dimension_y):
+                    self.progress_current=float(1+j+i*(self.Receiver_dimension_y)+(self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(k-1))                    
                     if gb.gbl_super_stop:
                             break                    
                     while gb.gbl_super_pause:
@@ -223,3 +228,8 @@ class ctrl_super:
             k=-1*k
             self.zstage_q.put(['move_abs_z',i],False)
         print '==== SCRIPT FINISHED ===='
+        
+        
+    def print3D_multi(self,dummy):
+        # run print3D on two folders
+        return 0

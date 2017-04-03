@@ -3,10 +3,10 @@ close all
 clear all
 %% INPUT
 
-stl_file='Part1.stl';
-slice_direction='z';
-print_displacement=500e-6; %m
-layer_displacement=1e-3; %m
+stl_file='cone.stl';
+slice_direction='y';
+print_displacement=0.5e-6; %m
+layer_displacement=0.5e-6; %m
 
 %% Receive dimension from STL file
 
@@ -86,4 +86,6 @@ switch slice_direction
             imwrite(squeeze(OUTPUTgrid(:,:,i)),['output/array',num2str(i),'.png'])
         end
 end
-save('output/specs.mat','print_displacement','layer_displacement','layers')
+dimension_x = xx
+dimension_y = yy
+save('output/specs.mat','print_displacement','layer_displacement','layers','dimension_x','dimension_y')
