@@ -39,13 +39,26 @@ class ctrl_super:
         
         self.worker_options = {
                         'print3D' : self.print3D,
+                        'print3D_multi' : self.print3D_multi,
                         'energy' : self.energy,
                         'focus' : self.focus,
                        }
         self.direction_A=1
-        self.condition_A = { 1 : gb.gbl_donor_x_refresh_bound_A,
-                          -1 : 0
-                          }
+        self.condition_A = { 1 : gb.gbl_donor_x_refresh_bound_A_up,
+                            -1 : gb.gbl_donor_x_refresh_bound_A_down
+                           }
+                           
+                       
+        self.direction_B=1
+        self.condition_B = { 1 : gb.gbl_donor_x_refresh_bound_B_up,
+                            -1 : gb.gbl_donor_x_refresh_bound_B_down
+                           }
+        
+        #define start locations from current position
+        self.donor_pos_A_x_hist = gb.gbl_donor_x_pos
+        self.donor_pos_A_y_hist = gb.gbl_donor_y_pos 
+        self.donor_pos_B_x_hist = gb.gbl_donor_x_pos+gb.gbl_donor_x_refresh_bound_B_down
+        self.donor_pos_B_y_hist = gb.gbl_donor_y_pos+gb.gbl_donor_y_refresh_bound_B_down        
         
     def worker_loop(self):
         while self.active==True:
@@ -81,30 +94,33 @@ class ctrl_super:
         self.laser_q.put(['single_pulse',0],False) 
         return True
 
-    def refresh_donor(self):             
-        if(self.direction_A*gb.gbl_donor_x_pos <= self.condition_A[self.direction_A]):
-            self.donor_q.put(['move_rel_x',self.direction_A*gb.gbl_donor_refresh_distance],False)
-
-        else:
-            self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
-            self.direction_A=-1*self.direction_A
+    def refresh_donor(self,dummy='A'):
+        if dummy == 'A':             
+            if(self.direction_A*gb.gbl_donor_x_pos <= self.condition_A[self.direction_A]):
+                self.donor_q.put(['move_rel_x',self.direction_A*gb.gbl_donor_refresh_distance],False)
+            else:
+                self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
+                self.direction_A=-1*self.direction_A
+                
+        if dummy == 'B':             
+            if(self.direction_B*gb.gbl_donor_x_pos <= self.condition_B[self.direction_B]):
+                self.donor_q.put(['move_rel_x',self.direction_B*gb.gbl_donor_refresh_distance],False)
+            else:
+                self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
+                self.direction_B=-1*self.direction_B
            
     def move_receiver(self,x,y):
-#        print '=== Move Receiver to ==='
-#        print x*self.Receiver_dx,y*self.Receiver_dy
         self.receiver_q.put(['move_abs_x',x*self.Receiver_dx],False)
         self.receiver_q.put(['move_abs_y',y*self.Receiver_dy],False)
-#        time.sleep(1)
         return True
 
     def new_layer(self):
-#        print '=== New Layer ==='
         self.receiver_q.put(['move_rel_z',self.Receiver_dz],False)
         return True
         
     def read_specs(self,path):
         #load parameters
-        self.mat = scipy.io.loadmat(self.cwd+path+'specs.mat') 
+        self.mat = scipy.io.loadmat(self.cwd+path+'\\specs.mat') 
         self.Receiver_dx=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in x [mm]
         self.Receiver_dy=self.mat['print_displacement'][0,0]*1e3 #step from pixel to pixel in y [mm]
         self.Receiver_dz=-1.0*self.mat['layer_displacement'][0,0]*1e3 #step from layer to layer in z [mm]
@@ -124,15 +140,12 @@ class ctrl_super:
         self.laser_q.put(['update_laser_power',laser_power],False)
         
         print "Read specifications from file"
-        self.read_specs(path)
-#        layer_data = misc.imread(self.cwd+path+'array'+str(1)+'.png','L')
-#        [steps_x,steps_y]=layer_data.shape        
+        self.read_specs('\\Blueprints\\Material_'+path)        
         self.progress_total = (self.Receiver_dimension_x)*(self.Receiver_dimension_y)*max(self.steps_z)
         
         for k in self.steps_z:
             print "Print slice number: "+str(k)
-            layer_data = misc.imread(self.cwd+path+'array'+str(k)+'.png','L')
-#            [self.Receiver_dimension_x,self.Receiver_dimension_y]=layer_data.shape
+            layer_data = misc.imread(self.cwd+'\\Blueprints\\Material_'+path+'\\array'+str(k)+'.png','L')
             
             for i in np.arange(0,self.Receiver_dimension_x):                                 
                 for j in np.arange(0,self.Receiver_dimension_y):
@@ -142,11 +155,9 @@ class ctrl_super:
                     while gb.gbl_super_pause:
                             time.sleep(0.1)                     
                     if layer_data[i,j]:
-#                        t=time.clock()
                         self.move_receiver(i,j)
                         self.release_laser()
-                        self.refresh_donor()                  
-#                        print 'time needed: ' + str(time.clock()-t)                                                   
+                        self.refresh_donor(path)                                                                    
                 if gb.gbl_super_stop:
                     break
             
@@ -231,7 +242,51 @@ class ctrl_super:
         
         
     def print3D_multi(self,dummy):
+        print 'start'
         # run print3D on two folders
-        
-        
+        laser_power_A=0.5
+        laser_power_B=0.3
+        self.read_specs('\\Blueprints\\Material_A')
+        for k in self.steps_z:
+            print k
+            #Material A
+            path = 'A'
+            #move to old donor pos
+            self.donor_q.put(['move_abs_x',self.donor_pos_A_x_hist,],False)
+            self.donor_q.put(['move_abs_y',self.donor_pos_A_y_hist,],False)
+            
+            self.laser_q.put(['update_laser_power',laser_power_A],False)
+            self.read_specs('\\Blueprints\\Material_'+path)
+            layer_data = misc.imread(self.cwd+'\\Blueprints\\Material_'+path+'\\array'+str(k)+'.png','L')
+            for i in np.arange(0,self.Receiver_dimension_x):                                 
+                    for j in np.arange(0,self.Receiver_dimension_y):
+                        if layer_data[i,j]:
+    #                        t=time.clock()
+                            self.move_receiver(i,j)
+                            self.release_laser()
+                            self.refresh_donor(path)
+            time.sleep(0.5) 
+            self.donor_pos_A_x_hist = gb.gbl_donor_x_pos
+            self.donor_pos_A_y_hist = gb.gbl_donor_y_pos
+                
+            path = 'B'
+             #move to old donor pos
+            self.donor_q.put(['move_abs_x',self.donor_pos_B_x_hist,],False)
+            self.donor_q.put(['move_abs_y',self.donor_pos_B_y_hist,],False)
+            
+            self.laser_q.put(['update_laser_power',laser_power_B],False)
+            self.read_specs('\\Blueprints\\Material_'+path)
+            layer_data = misc.imread(self.cwd+'\\Blueprints\\Material_'+path+'\\array'+str(k)+'.png','L')
+            for i in np.arange(0,self.Receiver_dimension_x):                                 
+                    for j in np.arange(0,self.Receiver_dimension_y):
+                        if layer_data[i,j]:
+    #                        t=time.clock()
+                            self.move_receiver(i,j)
+                            self.release_laser()
+                            self.refresh_donor(path)
+            time.sleep(0.5) 
+            self.donor_pos_B_x_hist = gb.gbl_donor_x_pos
+            self.donor_pos_B_y_hist = gb.gbl_donor_y_pos
+            self.new_layer()
+        print 'finish'
         return 0

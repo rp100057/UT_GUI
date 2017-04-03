@@ -5,8 +5,8 @@ clear all
 
 stl_file='cone.stl';
 slice_direction='y';
-print_displacement=0.5e-6; %m
-layer_displacement=0.5e-6; %m
+print_displacement=2e-6; %m
+layer_displacement=4e-6; %m
 
 %% Receive dimension from STL file
 

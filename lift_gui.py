@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'LIFT_GUI.ui'
 #
-# Created: Mon Apr 03 10:02:03 2017
+# Created: Mon Apr 03 11:13:13 2017
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -109,6 +109,12 @@ class Ui_MainWindow(object):
         self.comboBox_global = QtGui.QComboBox(self.groupBox_2)
         self.comboBox_global.setGeometry(QtCore.QRect(20, 30, 221, 21))
         self.comboBox_global.setObjectName(_fromUtf8("comboBox_global"))
+        self.comboBox_global.addItem(_fromUtf8(""))
+        self.comboBox_global.addItem(_fromUtf8(""))
+        self.comboBox_global.addItem(_fromUtf8(""))
+        self.comboBox_global.addItem(_fromUtf8(""))
+        self.comboBox_global.addItem(_fromUtf8(""))
+        self.comboBox_global.addItem(_fromUtf8(""))
         self.comboBox_global.addItem(_fromUtf8(""))
         self.comboBox_global.addItem(_fromUtf8(""))
         self.comboBox_global.addItem(_fromUtf8(""))
@@ -501,12 +507,18 @@ class Ui_MainWindow(object):
         self.comboBox_global.setItemText(18, _translate("MainWindow", "gbl_zstage_lim_up", None))
         self.comboBox_global.setItemText(19, _translate("MainWindow", "gbl_laser_power_lim_down", None))
         self.comboBox_global.setItemText(20, _translate("MainWindow", "gbl_laser_power_lim_up", None))
-        self.comboBox_global.setItemText(21, _translate("MainWindow", "gbl_donor_x_refresh_bound_A", None))
-        self.comboBox_global.setItemText(22, _translate("MainWindow", "gbl_donor_y_refresh_bound_A", None))
-        self.comboBox_global.setItemText(23, _translate("MainWindow", "gbl_donor_refresh_distance", None))
-        self.comboBox_global.setItemText(24, _translate("MainWindow", "gbl_super_pause", None))
-        self.comboBox_global.setItemText(25, _translate("MainWindow", "gbl_super_stop", None))
-        self.comboBox_global.setItemText(26, _translate("MainWindow", "gbl_super_settling_delay", None))
+        self.comboBox_global.setItemText(21, _translate("MainWindow", "gbl_donor_x_refresh_bound_A_up", None))
+        self.comboBox_global.setItemText(22, _translate("MainWindow", "gbl_donor_x_refresh_bound_A_down", None))
+        self.comboBox_global.setItemText(23, _translate("MainWindow", "gbl_donor_y_refresh_bound_A_up", None))
+        self.comboBox_global.setItemText(24, _translate("MainWindow", "gbl_donor_y_refresh_bound_A_down", None))
+        self.comboBox_global.setItemText(25, _translate("MainWindow", "gbl_donor_x_refresh_bound_B_up", None))
+        self.comboBox_global.setItemText(26, _translate("MainWindow", "gbl_donor_x_refresh_bound_B_down", None))
+        self.comboBox_global.setItemText(27, _translate("MainWindow", "gbl_donor_y_refresh_bound_B_up", None))
+        self.comboBox_global.setItemText(28, _translate("MainWindow", "gbl_donor_y_refresh_bound_B_down", None))
+        self.comboBox_global.setItemText(29, _translate("MainWindow", "gbl_donor_refresh_distance", None))
+        self.comboBox_global.setItemText(30, _translate("MainWindow", "gbl_super_pause", None))
+        self.comboBox_global.setItemText(31, _translate("MainWindow", "gbl_super_stop", None))
+        self.comboBox_global.setItemText(32, _translate("MainWindow", "gbl_super_settling_delay", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_general), _translate("MainWindow", "|  GENERAL  |", None))
         self.groupBox_zstage.setTitle(_translate("MainWindow", "Z STAGE", None))
         self.pushButton_zstage_home.setText(_translate("MainWindow", "HOME", None))

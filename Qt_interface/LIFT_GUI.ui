@@ -426,12 +426,42 @@
        </item>
        <item>
         <property name="text">
-         <string>gbl_donor_x_refresh_bound_A</string>
+         <string>gbl_donor_x_refresh_bound_A_up</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>gbl_donor_y_refresh_bound_A</string>
+         <string>gbl_donor_x_refresh_bound_A_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_y_refresh_bound_A_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_y_refresh_bound_A_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_x_refresh_bound_B_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_x_refresh_bound_B_down</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_y_refresh_bound_B_up</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gbl_donor_y_refresh_bound_B_down</string>
         </property>
        </item>
        <item>

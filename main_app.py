@@ -349,8 +349,8 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.status_zstage=dummy
     
     def super_print3D(self):
-        arg=[float(self.lineEdit_super_print3D_laserPower.text()),'\\Blueprints\\Material_A\\']
-        self.super_q.put(['print3D',arg],False)
+        arg=[float(self.lineEdit_super_print3D_laserPower.text()),'A']
+        self.super_q.put(['print3D_multi',arg],False)
     
     def super_energy(self):
         energy_min=float(self.lineEdit_super_energy_laser_min.text())
