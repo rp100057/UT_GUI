@@ -131,6 +131,8 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.pushButton_super_focus.clicked.connect(self.super_focus)
         self.pushButton_super_pause.clicked.connect(self.super_pause)
         self.pushButton_super_stop.clicked.connect(self.super_stop)
+        self.lineEdit_super_print3D_laserPower_2.setDisabled(True)
+        self.checkBox_super_print3D.stateChanged.connect(self.super_multi)
         
         self.comboBox_global.currentIndexChanged.connect(self.global_show)
         self.pushButton_global.clicked.connect(self.global_set)
@@ -349,8 +351,12 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.status_zstage=dummy
     
     def super_print3D(self):
-        arg=[float(self.lineEdit_super_print3D_laserPower.text()),'A']
-        self.super_q.put(['print3D_multi',arg],False)
+        if self.checkBox_super_print3D.isChecked():
+            arg=[float(self.lineEdit_super_print3D_laserPower.text()),float(self.lineEdit_super_print3D_laserPower_2.text())]
+            self.super_q.put(['print3D_multi',arg],False)
+        else:
+            arg=[float(self.lineEdit_super_print3D_laserPower.text())]
+            self.super_q.put(['print3D',arg],False)
     
     def super_energy(self):
         energy_min=float(self.lineEdit_super_energy_laser_min.text())
@@ -382,6 +388,9 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
             
     def super_stop(self):
         gb.gbl_super_stop = not gb.gbl_super_stop
+
+    def super_multi(self):
+        self.lineEdit_super_print3D_laserPower_2.setDisabled(not self.checkBox_super_print3D.isChecked())
         
     def global_show(self):
         self.lineEdit_global.setText(str(gb.gbl_dict[str(self.comboBox_global.currentText())]))

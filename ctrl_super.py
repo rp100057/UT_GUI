@@ -131,10 +131,11 @@ class ctrl_super:
     def print3D(self,dummy):
 #        dummy = [laserPower, Path]
         laser_power = dummy[0]
-        path = dummy[1]
+        path = 'A'
         
         print "==== STARTING: print3D ===="
         gb.gbl_super_stop = False
+        self.progress_current=0
         
         print "Move to initial conditions and set laser power"
         self.laser_q.put(['update_laser_power',laser_power],False)
@@ -146,14 +147,14 @@ class ctrl_super:
         for k in self.steps_z:
             print "Print slice number: "+str(k)
             layer_data = misc.imread(self.cwd+'\\Blueprints\\Material_'+path+'\\array'+str(k)+'.png','L')
-            
+  
             for i in np.arange(0,self.Receiver_dimension_x):                                 
                 for j in np.arange(0,self.Receiver_dimension_y):
                     self.progress_current=float(1+j+i*(self.Receiver_dimension_y)+(self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(k-1))                    
                     if gb.gbl_super_stop:
                             break                    
                     while gb.gbl_super_pause:
-                            time.sleep(0.1)                     
+                            time.sleep(0.1) 
                     if layer_data[i,j]:
                         self.move_receiver(i,j)
                         self.release_laser()
@@ -170,6 +171,7 @@ class ctrl_super:
         print "==== STARTING: energy scan ===="
         #dummy [min,max,delta,num,spatial]
         gb.gbl_super_stop = False
+        self.progress_current=0
         energy_min=dummy[0]
         energy_max=dummy[1]
         delta=dummy[2] 
@@ -201,6 +203,8 @@ class ctrl_super:
         print "==== STARTING: focus scan ===="
         #dummy [min,max,delta,laser_power]
         gb.gbl_super_stop = False
+        self.progress_current=0
+        
         z_min=dummy[0]
         z_max=dummy[1]
         z_delta=dummy[2]
@@ -242,13 +246,21 @@ class ctrl_super:
         
         
     def print3D_multi(self,dummy):
-        print 'start'
+        print "==== STARTING: print3D multi ===="
+        gb.gbl_super_stop = False
+        self.progress_current=0
+        progress_A = 0
+        progress_B = 0
         # run print3D on two folders
-        laser_power_A=0.5
-        laser_power_B=0.3
+        laser_power_A=dummy[0]
+        laser_power_B=dummy[1]
+
         self.read_specs('\\Blueprints\\Material_A')
+        self.progress_total = (self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(max(self.steps_z)+1)*2
         for k in self.steps_z:
-            print k
+            if gb.gbl_super_stop:
+                break
+            print 'Print slice number: '+str(k)+' from material A' 
             #Material A
             path = 'A'
             #move to old donor pos
@@ -258,17 +270,26 @@ class ctrl_super:
             self.laser_q.put(['update_laser_power',laser_power_A],False)
             self.read_specs('\\Blueprints\\Material_'+path)
             layer_data = misc.imread(self.cwd+'\\Blueprints\\Material_'+path+'\\array'+str(k)+'.png','L')
-            for i in np.arange(0,self.Receiver_dimension_x):                                 
+            for i in np.arange(0,self.Receiver_dimension_x):
+                    if gb.gbl_super_stop:
+                        break                                 
                     for j in np.arange(0,self.Receiver_dimension_y):
+                        self.progress_current=progress_B+float(1+j+i*(self.Receiver_dimension_y)+(self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(k-1))
+                        if gb.gbl_super_stop:
+                            break
+                        while gb.gbl_super_pause:
+                            time.sleep(0.1)
                         if layer_data[i,j]:
-    #                        t=time.clock()
                             self.move_receiver(i,j)
                             self.release_laser()
                             self.refresh_donor(path)
-            time.sleep(0.5) 
+                            
+            time.sleep(0.5)
+            progress_A=self.progress_current
             self.donor_pos_A_x_hist = gb.gbl_donor_x_pos
             self.donor_pos_A_y_hist = gb.gbl_donor_y_pos
-                
+            
+            print 'Print slice number: '+str(k)+' from material B' 
             path = 'B'
              #move to old donor pos
             self.donor_q.put(['move_abs_x',self.donor_pos_B_x_hist,],False)
@@ -277,16 +298,23 @@ class ctrl_super:
             self.laser_q.put(['update_laser_power',laser_power_B],False)
             self.read_specs('\\Blueprints\\Material_'+path)
             layer_data = misc.imread(self.cwd+'\\Blueprints\\Material_'+path+'\\array'+str(k)+'.png','L')
-            for i in np.arange(0,self.Receiver_dimension_x):                                 
+            for i in np.arange(0,self.Receiver_dimension_x):
+                    if gb.gbl_super_stop:
+                        break                                 
                     for j in np.arange(0,self.Receiver_dimension_y):
+                        self.progress_current=progress_A+float(1+j+i*(self.Receiver_dimension_y)+(self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(k-1))
+                        if gb.gbl_super_stop:
+                            break
+                        while gb.gbl_super_pause:
+                            time.sleep(0.1)
                         if layer_data[i,j]:
-    #                        t=time.clock()
                             self.move_receiver(i,j)
                             self.release_laser()
                             self.refresh_donor(path)
             time.sleep(0.5) 
+            progress_B=self.progress_current
             self.donor_pos_B_x_hist = gb.gbl_donor_x_pos
             self.donor_pos_B_y_hist = gb.gbl_donor_y_pos
             self.new_layer()
-        print 'finish'
+        print '==== SCRIPT FINISHED ===='
         return 0

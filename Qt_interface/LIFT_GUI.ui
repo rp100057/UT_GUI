@@ -1257,7 +1257,46 @@
         </rect>
        </property>
        <property name="text">
-        <string>LASER POWER</string>
+        <string>LASER POWER A</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="checkBox_super_print3D">
+       <property name="geometry">
+        <rect>
+         <x>490</x>
+         <y>40</y>
+         <width>121</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>MULTIMATERIAL</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_super_print3D_laserPower_2">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>40</y>
+         <width>113</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>20</y>
+         <width>101</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>LASER POWER B</string>
        </property>
       </widget>
      </widget>
@@ -1604,71 +1643,13 @@
        <rect>
         <x>30</x>
         <y>400</y>
-        <width>741</width>
+        <width>541</width>
         <height>101</height>
        </rect>
       </property>
       <property name="title">
        <string>SCRIPT CONTROL</string>
       </property>
-      <widget class="QLabel" name="label_17">
-       <property name="geometry">
-        <rect>
-         <x>390</x>
-         <y>60</y>
-         <width>53</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>[min]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_super_time">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>330</x>
-         <y>60</y>
-         <width>51</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_super_perc">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>330</x>
-         <y>30</y>
-         <width>51</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_16">
-       <property name="geometry">
-        <rect>
-         <x>390</x>
-         <y>30</y>
-         <width>53</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>[%]</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="pushButton_super_stop">
        <property name="geometry">
         <rect>
@@ -1693,6 +1674,77 @@
        </property>
        <property name="text">
         <string>PAUSE</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>400</y>
+        <width>181</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>PROGRESS</string>
+      </property>
+      <widget class="QLabel" name="label_16">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>30</y>
+         <width>53</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>[%]</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_super_perc">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>30</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_17">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>60</y>
+         <width>53</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>[min]</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_super_time">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>60</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0.0</string>
        </property>
       </widget>
      </widget>

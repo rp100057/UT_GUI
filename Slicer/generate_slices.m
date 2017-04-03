@@ -5,7 +5,7 @@ clear all
 
 stl_file='cone.stl';
 slice_direction='y';
-print_displacement=2e-6; %m
+print_displacement=1e-6; %m
 layer_displacement=4e-6; %m
 
 %% Receive dimension from STL file
@@ -47,6 +47,8 @@ switch slice_direction
         xx=xco/layer_displacement;      
         yy=yco/print_displacement;
         zz=zco/print_displacement;
+        dimension_x = yy;
+        dimension_y = zz;
         layers=xx;
         [OUTPUTgrid] = VOXELISE(round(xx),round(yy),round(zz),stl_file,'xyz');  
         for i=1:xx
@@ -62,6 +64,8 @@ switch slice_direction
         xx=xco/print_displacement;
         yy=yco/layer_displacement;
         zz=zco/print_displacement;
+        dimension_x = xx;
+        dimension_y = zz;
         layers=yy;
         [OUTPUTgrid] = VOXELISE(round(xx),round(yy),round(zz),stl_file,'xyz');  
         for i=1:yy
@@ -76,6 +80,8 @@ switch slice_direction
         xx=xco/print_displacement;
         yy=yco/print_displacement;
         zz=zco/layer_displacement;
+        dimension_x = xx;
+        dimension_y = yy;
         layers=zz;
         [OUTPUTgrid] = VOXELISE(round(xx),round(yy),round(zz),stl_file,'xyz');  
         for i=1:zz
@@ -86,6 +92,5 @@ switch slice_direction
             imwrite(squeeze(OUTPUTgrid(:,:,i)),['output/array',num2str(i),'.png'])
         end
 end
-dimension_x = xx
-dimension_y = yy
+
 save('output/specs.mat','print_displacement','layer_displacement','layers','dimension_x','dimension_y')
