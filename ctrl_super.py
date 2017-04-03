@@ -42,8 +42,8 @@ class ctrl_super:
                         'energy' : self.energy,
                         'focus' : self.focus,
                        }
-        self.direction=1
-        self.condition = { 1 : gb.gbl_donor_x_refresh_bound,
+        self.direction_A=1
+        self.condition_A = { 1 : gb.gbl_donor_x_refresh_bound_A,
                           -1 : 0
                           }
         
@@ -82,12 +82,12 @@ class ctrl_super:
         return True
 
     def refresh_donor(self):             
-        if(self.direction*gb.gbl_donor_x_pos <= self.condition[self.direction]):
-            self.donor_q.put(['move_rel_x',self.direction*gb.gbl_donor_refresh_distance],False)
+        if(self.direction_A*gb.gbl_donor_x_pos <= self.condition_A[self.direction_A]):
+            self.donor_q.put(['move_rel_x',self.direction_A*gb.gbl_donor_refresh_distance],False)
 
         else:
             self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
-            self.direction=-1*self.direction
+            self.direction_A=-1*self.direction_A
            
     def move_receiver(self,x,y):
 #        print '=== Move Receiver to ==='
@@ -232,4 +232,6 @@ class ctrl_super:
         
     def print3D_multi(self,dummy):
         # run print3D on two folders
+        
+        
         return 0

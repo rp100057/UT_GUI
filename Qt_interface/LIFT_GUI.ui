@@ -426,12 +426,12 @@
        </item>
        <item>
         <property name="text">
-         <string>gbl_donor_x_refresh_bound</string>
+         <string>gbl_donor_x_refresh_bound_A</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>gbl_donor_y_refresh_bound</string>
+         <string>gbl_donor_y_refresh_bound_A</string>
         </property>
        </item>
        <item>

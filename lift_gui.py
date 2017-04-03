@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'LIFT_GUI.ui'
 #
-# Created: Fri Mar 31 16:16:47 2017
+# Created: Mon Apr 03 10:02:03 2017
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -501,8 +501,8 @@ class Ui_MainWindow(object):
         self.comboBox_global.setItemText(18, _translate("MainWindow", "gbl_zstage_lim_up", None))
         self.comboBox_global.setItemText(19, _translate("MainWindow", "gbl_laser_power_lim_down", None))
         self.comboBox_global.setItemText(20, _translate("MainWindow", "gbl_laser_power_lim_up", None))
-        self.comboBox_global.setItemText(21, _translate("MainWindow", "gbl_donor_x_refresh_bound", None))
-        self.comboBox_global.setItemText(22, _translate("MainWindow", "gbl_donor_y_refresh_bound", None))
+        self.comboBox_global.setItemText(21, _translate("MainWindow", "gbl_donor_x_refresh_bound_A", None))
+        self.comboBox_global.setItemText(22, _translate("MainWindow", "gbl_donor_y_refresh_bound_A", None))
         self.comboBox_global.setItemText(23, _translate("MainWindow", "gbl_donor_refresh_distance", None))
         self.comboBox_global.setItemText(24, _translate("MainWindow", "gbl_super_pause", None))
         self.comboBox_global.setItemText(25, _translate("MainWindow", "gbl_super_stop", None))

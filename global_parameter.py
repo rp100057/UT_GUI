@@ -31,8 +31,8 @@ gbl_laser_power_lim_down = 0.0
 gbl_laser_power_lim_up = 100.0
 
 # SCRIPT
-gbl_donor_x_refresh_bound = 30
-gbl_donor_y_refresh_bound = 15
+gbl_donor_x_refresh_bound_A = 30
+gbl_donor_y_refresh_bound_A = 15
 gbl_donor_refresh_distance=0.05 #mm
 gbl_super_pause = False
 gbl_super_stop = False
@@ -62,8 +62,8 @@ gbl_dict = { # STAGE POSITIONS
             'gbl_zstage_lim_up' : gbl_zstage_lim_up,
             'gbl_laser_power_lim_down' : gbl_laser_power_lim_down,
             'gbl_laser_power_lim_up' : gbl_laser_power_lim_up,
-            'gbl_donor_x_refresh_bound' : gbl_donor_x_refresh_bound,
-            'gbl_donor_y_refresh_bound' : gbl_donor_y_refresh_bound,
+            'gbl_donor_x_refresh_bound_A' : gbl_donor_x_refresh_bound_A,
+            'gbl_donor_y_refresh_bound_A' : gbl_donor_y_refresh_bound_A,
             'gbl_donor_refresh_distance' : gbl_donor_refresh_distance,
             'gbl_super_pause' : gbl_super_pause,
             'gbl_super_stop' : gbl_super_stop,
