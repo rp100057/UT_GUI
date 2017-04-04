@@ -65,28 +65,28 @@ class control_donor:
         self.pi_xy.home_axis(2)      
         
     def move_abs_x(self,pos):
-        if pos <= gb.gbl_donor_x_lim_up and pos >=  gb.gbl_donor_x_lim_down:
+        if pos <= gb.gbl_dict['gbl_donor_x_lim_up'] and pos >=  gb.gbl_dict['gbl_donor_x_lim_down']:
             print "Moved abs x to "+str(pos)
             self.pi_xy.move_abs(1,pos)
         else:
             print "OUT OF LIMITS"
 
     def move_abs_y(self,pos):
-        if pos <= gb.gbl_donor_y_lim_up and pos >=  gb.gbl_donor_y_lim_down:
+        if pos <= gb.gbl_dict['gbl_donor_y_lim_up'] and pos >=  gb.gbl_dict['gbl_donor_y_lim_down']:
             print "Moved abs y to "+str(pos)
             self.pi_xy.move_abs(2,pos)
         else:
             print "OUT OF LIMITS"
 
     def move_rel_x(self,delta):
-        if gb.gbl_donor_x_pos+delta <= gb.gbl_donor_x_lim_up and gb.gbl_donor_x_pos+delta >=  gb.gbl_donor_x_lim_down: 
+        if gb.gbl_dict['gbl_donor_x_pos']+delta <= gb.gbl_dict['gbl_donor_x_lim_up'] and gb.gbl_dict['gbl_donor_x_pos']+delta >=  gb.gbl_dict['gbl_donor_x_lim_down']: 
             print "Relative move x of "+str(delta)
             self.pi_xy.move_rel(1,delta)
         else:
             print "OUT OF LIMITS"
 
     def move_rel_y(self,delta):
-        if gb.gbl_donor_y_pos+delta <= gb.gbl_donor_y_lim_up and gb.gbl_donor_y_pos+delta >=  gb.gbl_donor_y_lim_down: 
+        if gb.gbl_dict['gbl_donor_y_pos']+delta <= gb.gbl_dict['gbl_donor_y_lim_up'] and gb.gbl_dict['gbl_donor_y_pos']+delta >=  gb.gbl_dict['gbl_donor_y_lim_down']: 
             print "Relative move x of "+str(delta)
             self.pi_xy.move_rel(2,delta)
         else:

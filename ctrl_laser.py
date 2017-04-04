@@ -60,7 +60,7 @@ class control_laser:
         self.laser.LaserOff()
         
     def update_laser_power(self,powerPerc):
-        if powerPerc <= gb.gbl_laser_power_lim_up and powerPerc >=  gb.gbl_laser_power_lim_down:
+        if powerPerc <= gb.gbl_dict['gbl_laser_power_lim_up'] and powerPerc >=  gb.gbl_dict['gbl_laser_power_lim_down']:
             print 'Set laser power to '+str(powerPerc)
             self.laser.UpdateLaserPower(powerPerc)
         else:

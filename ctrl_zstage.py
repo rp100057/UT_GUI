@@ -56,14 +56,14 @@ class control_zstage:
         self.pi_z.home_axis(3)   
         
     def move_abs_z(self,pos):
-        if pos <= gb.gbl_zstage_lim_up and pos >=  gb.gbl_zstage_lim_down:
+        if pos <= gb.gbl_dict['gbl_zstage_lim_up'] and pos >=  gb.gbl_dict['gbl_zstage_lim_down']:
             print "Moved abs z to "+str(pos)
             self.pi_z.move_abs(3,pos)
         else:
             print "OUT OF LIMITS"
 
     def move_rel_z(self,delta):
-        if gb.gbl_zstage_pos+delta <= gb.gbl_zstage_lim_up and gb.gbl_zstage_pos+delta >=  gb.gbl_zstage_lim_down:
+        if gb.gbl_dict['gbl_zstage_pos']+delta <= gb.gbl_dict['gbl_zstage_lim_up'] and gb.gbl_dict['gbl_zstage_pos']+delta >=  gb.gbl_dict['gbl_zstage_lim_down']:
             print "Relative move z of "+str(delta)
             self.pi_z.move_rel(3,delta)
         else:

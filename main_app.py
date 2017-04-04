@@ -10,6 +10,7 @@ import time
 import Queue
 import threading
 from PyQt4 import QtGui
+from PyQt4 import QtCore
 
 import lift_gui
 import ctrl_receiver
@@ -38,6 +39,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.status_donor = 999
         self.status_receiver = 999
         self.status_zstage = 999
+        self.timeout_value = 200
         
         self.update_options = {
                                 'update_receiver_x' : self.update_receiver_x,
@@ -136,7 +138,11 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         
         self.comboBox_global.currentIndexChanged.connect(self.global_show)
         self.pushButton_global.clicked.connect(self.global_set)
-        
+   
+        self.lcdNumber_laser.setAutoFillBackground(True)
+        p = self.lcdNumber_laser.palette()
+        p.setColor(self.lcdNumber_laser.backgroundRole(), QtCore.Qt.white)
+        self.lcdNumber_laser.setPalette(p)
         
       
     def status_loop(self):
@@ -166,22 +172,22 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.status_laser+=1
         self.status_zstage+=1
         
-        if self.status_donor > 200:
+        if self.status_donor > self.timeout_value:
             self.lineEdit_donor_ctrl_status.setText('Off') 
         else:
             self.lineEdit_donor_ctrl_status.setText('Active')
 
-        if self.status_receiver > 200:
+        if self.status_receiver > self.timeout_value:
             self.lineEdit_receiver_ctrl_status.setText('Off') 
         else:
             self.lineEdit_receiver_ctrl_status.setText('Active')
 
-        if self.status_zstage > 200:
+        if self.status_zstage > self.timeout_value:
             self.lineEdit_zstage_ctrl_status.setText('Off') 
         else:
             self.lineEdit_zstage_ctrl_status.setText('Active')
 
-        if self.status_laser > 200:
+        if self.status_laser > self.timeout_value:
             self.lineEdit_laser_ctrl_status.setText('Off') 
         else:
             self.lineEdit_laser_ctrl_status.setText('Active')               
@@ -200,9 +206,17 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         
     def laser_on(self):
         self.laser_q.put(['laser_on',0],False)
+        self.lcdNumber_laser.setAutoFillBackground(True)
+        p = self.lcdNumber_laser.palette()
+        p.setColor(self.lcdNumber_laser.backgroundRole(), QtCore.Qt.red)
+        self.lcdNumber_laser.setPalette(p)
         
     def laser_off(self):
         self.laser_q.put(['laser_off',0],False)
+        self.lcdNumber_laser.setAutoFillBackground(True)
+        p = self.lcdNumber_laser.palette()
+        p.setColor(self.lcdNumber_laser.backgroundRole(), QtCore.Qt.white)
+        self.lcdNumber_laser.setPalette(p)
         
     def receiver_stepper_x_move_abs(self):
 #        print("Command sent")
@@ -278,31 +292,31 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         
     def update_receiver_x(self,pos):
         self.lcdNumber_receiver_stepper_x.display(pos) 
-        gb.gbl_receiver_x_pos=pos
+        gb.gbl_dict['gbl_receiver_x_pos']=pos
                
     def update_receiver_y(self,pos):
         self.lcdNumber_receiver_stepper_y.display(pos) 
-        gb.gbl_receiver_y_pos=pos
+        gb.gbl_dict['gbl_receiver_y_pos']=pos
         
     def update_receiver_z(self,pos):
         self.lcdNumber_receiver_stepper_z.display(pos) 
-        gb.gbl_receiver_z_pos=pos
+        gb.gbl_dict['gbl_receiver_z_pos']=pos
         
     def update_donor_x(self,pos):
         self.lcdNumber_donor_x.display(pos) 
-        gb.gbl_donor_x_pos=pos
+        gb.gbl_dict['gbl_donor_x_pos']=pos
         
     def update_donor_y(self,pos):
         self.lcdNumber_donor_y.display(pos) 
-        gb.gbl_donor_y_pos=pos
+        gb.gbl_dict['gbl_donor_y_pos']=pos
         
     def update_zstage(self,pos):
         self.lcdNumber_zstage.display(pos) 
-        gb.gbl_zstage_pos=pos
+        gb.gbl_dict['gbl_zstage_pos']=pos
         
     def update_laser(self,pos):
         self.lcdNumber_laser.display(pos) 
-        gb.gbl_laser_pos=pos
+        gb.gbl_dict['gbl_laser_pos']=pos
         
     def update_super(self,dummy):
 #        dummy = [perc,time]
@@ -311,32 +325,52 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
 
         
     def donor_ctrl_start(self):
-        self.ctrl_donor=ctrl_donor.control_donor(self.donor_q,self.status_q)
-        self.ctrl_donor.run()
+        if self.status_donor > self.timeout_value:
+            try:
+                self.ctrl_donor=ctrl_donor.control_donor(self.donor_q,self.status_q)
+                self.ctrl_donor.run()
+            except:
+                print("ERROR: Starting DONOR_CTRL")
                
     def donor_ctrl_stop(self):
-        self.ctrl_donor.stop()
+        if self.status_donor <= self.timeout_value:
+            self.ctrl_donor.stop()
        
     def receiver_ctrl_start(self):
-        self.ctrl_receiver=ctrl_receiver.control_receiver(self.receiver_q,self.status_q)
-        self.ctrl_receiver.run()
+        if self.status_receiver > self.timeout_value:
+            try:
+                self.ctrl_receiver=ctrl_receiver.control_receiver(self.receiver_q,self.status_q)
+                self.ctrl_receiver.run()
+            except:
+                print("ERROR: Starting RECEIVER_CTRL")
        
     def receiver_ctrl_stop(self):
-        self.ctrl_receiver.stop()
+        if self.status_receiver <= self.timeout_value:
+            self.ctrl_receiver.stop()
    
     def zstage_ctrl_start(self):
-        self.ctrl_zstage=ctrl_zstage.control_zstage(self.zstage_q,self.status_q)
-        self.ctrl_zstage.run()
+        if self.status_zstage > self.timeout_value:
+            try:
+                self.ctrl_zstage=ctrl_zstage.control_zstage(self.zstage_q,self.status_q)
+                self.ctrl_zstage.run()
+            except:
+                print("ERROR: Starting ZSTAGE_CTRL")
         
     def zstage_ctrl_stop(self):
-        self.ctrl_zstage.stop()
+        if self.status_zstage <= self.timeout_value:
+            self.ctrl_zstage.stop()
            
     def laser_ctrl_start(self):
-        self.ctrl_laser=ctrl_laser.control_laser(self.laser_q,self.status_q)
-        self.ctrl_laser.run()
+        if self.status_laser > self.timeout_value:
+            try:
+                self.ctrl_laser=ctrl_laser.control_laser(self.laser_q,self.status_q)
+                self.ctrl_laser.run()
+            except:
+                print("ERROR: Starting LASER_CTRL")
         
     def laser_ctrl_stop(self):
-        self.ctrl_laser.stop()
+        if self.status_laser <= self.timeout_value:
+            self.ctrl_laser.stop()
 
     def donor_alive(self,dummy):
         self.status_donor=dummy
@@ -380,14 +414,14 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         self.super_q.put(['focus',arg],False)
         
     def super_pause(self):
-        gb.gbl_super_pause = not gb.gbl_super_pause
-        if gb.gbl_super_pause:
+        gb.gbl_dict['gbl_super_pause'] = not gb.gbl_dict['gbl_super_pause']
+        if gb.gbl_dict['gbl_super_pause']:
             self.pushButton_super_pause.setText('RESUME')
         else:
             self.pushButton_super_pause.setText('PAUSE')
             
     def super_stop(self):
-        gb.gbl_super_stop = not gb.gbl_super_stop
+        gb.gbl_dict['gbl_super_stop'] = not gb.gbl_dict['gbl_super_stop']
 
     def super_multi(self):
         self.lineEdit_super_print3D_laserPower_2.setDisabled(not self.checkBox_super_print3D.isChecked())

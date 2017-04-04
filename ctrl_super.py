@@ -44,21 +44,21 @@ class ctrl_super:
                         'focus' : self.focus,
                        }
         self.direction_A=1
-        self.condition_A = { 1 : gb.gbl_donor_x_refresh_bound_A_up,
-                            -1 : gb.gbl_donor_x_refresh_bound_A_down
+        self.condition_A = { 1 : gb.gbl_dict['gbl_donor_x_refresh_bound_A_up'],
+                            -1 : gb.gbl_dict['gbl_donor_x_refresh_bound_A_down']
                            }
                            
                        
         self.direction_B=1
-        self.condition_B = { 1 : gb.gbl_donor_x_refresh_bound_B_up,
-                            -1 : gb.gbl_donor_x_refresh_bound_B_down
+        self.condition_B = { 1 : gb.gbl_dict['gbl_donor_x_refresh_bound_B_up'],
+                            -1 : gb.gbl_dict['gbl_donor_x_refresh_bound_B_down']
                            }
         
         #define start locations from current position
-        self.donor_pos_A_x_hist = gb.gbl_donor_x_pos
-        self.donor_pos_A_y_hist = gb.gbl_donor_y_pos 
-        self.donor_pos_B_x_hist = gb.gbl_donor_x_pos+gb.gbl_donor_x_refresh_bound_B_down
-        self.donor_pos_B_y_hist = gb.gbl_donor_y_pos+gb.gbl_donor_y_refresh_bound_B_down        
+        self.donor_pos_A_x_hist = gb.gbl_dict['gbl_donor_x_pos']
+        self.donor_pos_A_y_hist = gb.gbl_dict['gbl_donor_y_pos'] 
+        self.donor_pos_B_x_hist = gb.gbl_dict['gbl_donor_x_pos']+gb.gbl_dict['gbl_donor_x_refresh_bound_B_down']
+        self.donor_pos_B_y_hist = gb.gbl_dict['gbl_donor_y_pos']+gb.gbl_dict['gbl_donor_y_refresh_bound_B_down']        
         
     def worker_loop(self):
         while self.active==True:
@@ -75,7 +75,7 @@ class ctrl_super:
 #            print 'sender active'
             time.sleep(0.5)
             perc= self.progress_current/self.progress_total*100.0
-            est_time = (self.progress_total-self.progress_current)*gb.gbl_super_settling_delay/60.0
+            est_time = (self.progress_total-self.progress_current)*gb.gbl_dict['gbl_super_settling_delay']/60.0
             arg=[perc,est_time]
             self.sender_q.put(['update_super',arg],False)    
             
@@ -90,23 +90,23 @@ class ctrl_super:
         self.sender_t.join()
         
     def release_laser(self):
-        time.sleep(gb.gbl_super_settling_delay) 
+        time.sleep(gb.gbl_dict['gbl_super_settling_delay']) 
         self.laser_q.put(['single_pulse',0],False) 
         return True
 
     def refresh_donor(self,dummy='A'):
         if dummy == 'A':             
-            if(self.direction_A*gb.gbl_donor_x_pos <= self.condition_A[self.direction_A]):
-                self.donor_q.put(['move_rel_x',self.direction_A*gb.gbl_donor_refresh_distance],False)
+            if(self.direction_A*gb.gbl_dict['gbl_donor_x_pos'] <= self.condition_A[self.direction_A]):
+                self.donor_q.put(['move_rel_x',self.direction_A*gb.gbl_dict['gbl_donor_refresh_distance']],False)
             else:
-                self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
+                self.donor_q.put(['move_rel_y',gb.gbl_dict['gbl_donor_refresh_distance']],False)
                 self.direction_A=-1*self.direction_A
                 
         if dummy == 'B':             
-            if(self.direction_B*gb.gbl_donor_x_pos <= self.condition_B[self.direction_B]):
-                self.donor_q.put(['move_rel_x',self.direction_B*gb.gbl_donor_refresh_distance],False)
+            if(self.direction_B*gb.gbl_dict['gbl_donor_x_pos'] <= self.condition_B[self.direction_B]):
+                self.donor_q.put(['move_rel_x',self.direction_B*gb.gbl_dict['gbl_donor_refresh_distance']],False)
             else:
-                self.donor_q.put(['move_rel_y',gb.gbl_donor_refresh_distance],False)
+                self.donor_q.put(['move_rel_y',gb.gbl_dict['gbl_donor_refresh_distance']],False)
                 self.direction_B=-1*self.direction_B
            
     def move_receiver(self,x,y):
@@ -134,7 +134,7 @@ class ctrl_super:
         path = 'A'
         
         print "==== STARTING: print3D ===="
-        gb.gbl_super_stop = False
+        gb.gbl_dict['gbl_super_stop'] = False
         self.progress_current=0
         
         print "Move to initial conditions and set laser power"
@@ -151,18 +151,18 @@ class ctrl_super:
             for i in np.arange(0,self.Receiver_dimension_x):                                 
                 for j in np.arange(0,self.Receiver_dimension_y):
                     self.progress_current=float(1+j+i*(self.Receiver_dimension_y)+(self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(k-1))                    
-                    if gb.gbl_super_stop:
+                    if gb.gbl_dict['gbl_super_stop']:
                             break                    
-                    while gb.gbl_super_pause:
+                    while gb.gbl_dict['gbl_super_pause']:
                             time.sleep(0.1) 
                     if layer_data[i,j]:
                         self.move_receiver(i,j)
                         self.release_laser()
                         self.refresh_donor(path)                                                                    
-                if gb.gbl_super_stop:
+                if gb.gbl_dict['gbl_super_stop']:
                     break
             
-            if gb.gbl_super_stop:
+            if gb.gbl_dict['gbl_super_stop']:
                     break    
             self.new_layer()
         print '==== SCRIPT FINISHED ===='
@@ -170,7 +170,7 @@ class ctrl_super:
     def energy(self,dummy):
         print "==== STARTING: energy scan ===="
         #dummy [min,max,delta,num,spatial]
-        gb.gbl_super_stop = False
+        gb.gbl_dict['gbl_super_stop'] = False
         self.progress_current=0
         energy_min=dummy[0]
         energy_max=dummy[1]
@@ -185,15 +185,15 @@ class ctrl_super:
             for j in np.arange(0,steps_per_energy):
                 self.progress_current = (i/delta*steps_per_energy+j+1)
                 
-                if gb.gbl_super_stop:
+                if gb.gbl_dict['gbl_super_stop']:
                     break
-                while gb.gbl_super_pause:
+                while gb.gbl_dict['gbl_super_pause']:
                             time.sleep(0.1)
                 self.release_laser()
                 self.receiver_q.put(['move_rel_x',k*spatial_step],False)
                 self.refresh_donor()
             
-            if gb.gbl_super_stop:
+            if gb.gbl_dict['gbl_super_stop']:
                     break    
             self.receiver_q.put(['move_rel_y',spatial_step],False)
             k=-1*k
@@ -202,7 +202,7 @@ class ctrl_super:
     def focus(self,dummy):
         print "==== STARTING: focus scan ===="
         #dummy [min,max,delta,laser_power]
-        gb.gbl_super_stop = False
+        gb.gbl_dict['gbl_super_stop'] = False
         self.progress_current=0
         
         z_min=dummy[0]
@@ -220,13 +220,13 @@ class ctrl_super:
         for i in np.arange(z_min,z_max+z_delta,z_delta):
             for j in np.arange(0,steps_per_z):
                 self.progress_current = (i/z_delta*steps_per_z+j+1)
-                if gb.gbl_super_stop:
+                if gb.gbl_dict['gbl_super_stop']:
                     break
-                while gb.gbl_super_pause:
+                while gb.gbl_dict['gbl_super_pause']:
                             time.sleep(0.1)
                 self.release_laser()
                 self.donor_q.put(['move_rel_x',k*spatial_step],False)
-            if gb.gbl_super_stop:
+            if gb.gbl_dict['gbl_super_stop']:
                 break 
             
             # Add markings to every fith line
@@ -247,7 +247,7 @@ class ctrl_super:
         
     def print3D_multi(self,dummy):
         print "==== STARTING: print3D multi ===="
-        gb.gbl_super_stop = False
+        gb.gbl_dict['gbl_super_stop'] = False
         self.progress_current=0
         progress_A = 0
         progress_B = 0
@@ -258,7 +258,7 @@ class ctrl_super:
         self.read_specs('\\Blueprints\\Material_A')
         self.progress_total = (self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(max(self.steps_z)+1)*2
         for k in self.steps_z:
-            if gb.gbl_super_stop:
+            if gb.gbl_dict['gbl_super_stop']:
                 break
             print 'Print slice number: '+str(k)+' from material A' 
             #Material A
@@ -271,13 +271,13 @@ class ctrl_super:
             self.read_specs('\\Blueprints\\Material_'+path)
             layer_data = misc.imread(self.cwd+'\\Blueprints\\Material_'+path+'\\array'+str(k)+'.png','L')
             for i in np.arange(0,self.Receiver_dimension_x):
-                    if gb.gbl_super_stop:
+                    if gb.gbl_dict['gbl_super_stop']:
                         break                                 
                     for j in np.arange(0,self.Receiver_dimension_y):
                         self.progress_current=progress_B+float(1+j+i*(self.Receiver_dimension_y)+(self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(k-1))
-                        if gb.gbl_super_stop:
+                        if gb.gbl_dict['gbl_super_stop']:
                             break
-                        while gb.gbl_super_pause:
+                        while gb.gbl_dict['gbl_super_pause']:
                             time.sleep(0.1)
                         if layer_data[i,j]:
                             self.move_receiver(i,j)
@@ -286,8 +286,8 @@ class ctrl_super:
                             
             time.sleep(0.5)
             progress_A=self.progress_current
-            self.donor_pos_A_x_hist = gb.gbl_donor_x_pos
-            self.donor_pos_A_y_hist = gb.gbl_donor_y_pos
+            self.donor_pos_A_x_hist = gb.gbl_dict['gbl_donor_x_pos']
+            self.donor_pos_A_y_hist = gb.gbl_dict['gbl_donor_y_pos']
             
             print 'Print slice number: '+str(k)+' from material B' 
             path = 'B'
@@ -299,13 +299,13 @@ class ctrl_super:
             self.read_specs('\\Blueprints\\Material_'+path)
             layer_data = misc.imread(self.cwd+'\\Blueprints\\Material_'+path+'\\array'+str(k)+'.png','L')
             for i in np.arange(0,self.Receiver_dimension_x):
-                    if gb.gbl_super_stop:
+                    if gb.gbl_dict['gbl_super_stop']:
                         break                                 
                     for j in np.arange(0,self.Receiver_dimension_y):
                         self.progress_current=progress_A+float(1+j+i*(self.Receiver_dimension_y)+(self.Receiver_dimension_x)*(self.Receiver_dimension_y)*(k-1))
-                        if gb.gbl_super_stop:
+                        if gb.gbl_dict['gbl_super_stop']:
                             break
-                        while gb.gbl_super_pause:
+                        while gb.gbl_dict['gbl_super_pause']:
                             time.sleep(0.1)
                         if layer_data[i,j]:
                             self.move_receiver(i,j)
@@ -313,8 +313,8 @@ class ctrl_super:
                             self.refresh_donor(path)
             time.sleep(0.5) 
             progress_B=self.progress_current
-            self.donor_pos_B_x_hist = gb.gbl_donor_x_pos
-            self.donor_pos_B_y_hist = gb.gbl_donor_y_pos
+            self.donor_pos_B_x_hist = gb.gbl_dict['gbl_donor_x_pos']
+            self.donor_pos_B_y_hist = gb.gbl_dict['gbl_donor_y_pos']
             self.new_layer()
         print '==== SCRIPT FINISHED ===='
         return 0

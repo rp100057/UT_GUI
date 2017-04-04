@@ -45,229 +45,178 @@
       <property name="title">
        <string>CONTROLLER</string>
       </property>
-      <widget class="QPushButton" name="pushButton_laser_ctrl_stop">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>430</x>
-         <y>130</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>STOP</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_zstage_ctrl_status">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>102</x>
-         <y>60</y>
-         <width>91</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="frame">
-        <bool>true</bool>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_zstage_ctrl">
-       <property name="geometry">
-        <rect>
-         <x>110</x>
+         <x>30</x>
          <y>30</y>
-         <width>91</width>
-         <height>16</height>
+         <width>579</width>
+         <height>119</height>
         </rect>
        </property>
-       <property name="text">
-        <string>Z_STAGE_CTRL</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QLabel" name="label_zstage_ctrl">
+            <property name="text">
+             <string>Z_STAGE_CTRL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_zstage_ctrl_status">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_zstage_ctrl_start">
+            <property name="text">
+             <string>START</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_zstage_ctrl_stop">
+            <property name="text">
+             <string>STOP</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_donor_ctrl">
+            <property name="text">
+             <string>DONOR_CTRL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_donor_ctrl_status">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_donor_ctrl_start">
+            <property name="text">
+             <string>START</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_donor_ctrl_stop">
+            <property name="text">
+             <string>STOP</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_reveiver_ctrl">
+            <property name="text">
+             <string>RECEIVER_CTRL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_receiver_ctrl_status">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_ctrl_start">
+            <property name="text">
+             <string>START</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_ctrl_stop">
+            <property name="text">
+             <string>STOP</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_laser_ctrl">
+            <property name="text">
+             <string>LASER_CTRL</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_laser_ctrl_status">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_laser_ctrl_start">
+            <property name="text">
+             <string>START</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_laser_ctrl_stop">
+            <property name="text">
+             <string>STOP</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
-      <widget class="QLabel" name="label_donor_ctrl">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>30</y>
-         <width>81</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>DONOR_CTRL</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_donor_ctrl_status">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>212</x>
-         <y>60</y>
-         <width>91</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_donor_ctrl_start">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>90</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>START</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_laser_ctrl_status">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>432</x>
-         <y>60</y>
-         <width>91</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_laser_ctrl_start">
-       <property name="geometry">
-        <rect>
-         <x>430</x>
-         <y>90</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>START</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_ctrl_stop">
-       <property name="geometry">
-        <rect>
-         <x>318</x>
-         <y>130</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>STOP</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_zstage_ctrl_start">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>90</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>START</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_receiver_ctrl_status">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>320</x>
-         <y>60</y>
-         <width>91</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_reveiver_ctrl">
-       <property name="geometry">
-        <rect>
-         <x>320</x>
-         <y>30</y>
-         <width>101</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>RECEIVER_CTRL</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_zstage_ctrl_stop">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>130</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>STOP</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_donor_ctrl_stop">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>130</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>STOP</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_ctrl_start">
-       <property name="geometry">
-        <rect>
-         <x>318</x>
-         <y>90</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>START</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_laser_ctrl">
-       <property name="geometry">
-        <rect>
-         <x>440</x>
-         <y>30</y>
-         <width>81</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>LASER_CTRL</string>
-       </property>
-      </widget>
+      <zorder>pushButton_laser_ctrl_stop</zorder>
+      <zorder>lineEdit_zstage_ctrl_status</zorder>
+      <zorder>label_zstage_ctrl</zorder>
+      <zorder>label_donor_ctrl</zorder>
+      <zorder>lineEdit_donor_ctrl_status</zorder>
+      <zorder>pushButton_donor_ctrl_start</zorder>
+      <zorder>lineEdit_laser_ctrl_status</zorder>
+      <zorder>pushButton_laser_ctrl_start</zorder>
+      <zorder>pushButton_receiver_ctrl_stop</zorder>
+      <zorder>pushButton_zstage_ctrl_start</zorder>
+      <zorder>lineEdit_receiver_ctrl_status</zorder>
+      <zorder>label_reveiver_ctrl</zorder>
+      <zorder>pushButton_zstage_ctrl_stop</zorder>
+      <zorder>pushButton_donor_ctrl_stop</zorder>
+      <zorder>pushButton_receiver_ctrl_start</zorder>
+      <zorder>label_laser_ctrl</zorder>
+      <zorder>pushButton_laser_ctrl_start</zorder>
      </widget>
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
@@ -281,209 +230,206 @@
       <property name="title">
        <string>GLOBAL PARAMETER</string>
       </property>
-      <widget class="QPushButton" name="pushButton_global">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>380</x>
+         <x>30</x>
          <y>30</y>
-         <width>111</width>
-         <height>28</height>
+         <width>471</width>
+         <height>30</height>
         </rect>
        </property>
-       <property name="text">
-        <string>SET NEW VALUE</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_global">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>250</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox_global">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>221</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_x_pos</string>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>7</number>
         </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_y_pos</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_z_pos</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_x_pos</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_y_pos</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_zstage_pos</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_laser_power</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_x_lim_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_x_lim_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_y_lim_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_y_lim_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_z_lim_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_receiver_z_lim_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_x_lim_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_x_lim_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_y_lim_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_y_lim_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_zstage_lim_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_zstage_lim_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_laser_power_lim_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_laser_power_lim_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_x_refresh_bound_A_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_x_refresh_bound_A_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_y_refresh_bound_A_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_y_refresh_bound_A_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_x_refresh_bound_B_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_x_refresh_bound_B_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_y_refresh_bound_B_up</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_y_refresh_bound_B_down</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_donor_refresh_distance</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_super_pause</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_super_stop</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>gbl_super_settling_delay</string>
-        </property>
-       </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_global">
+          <item>
+           <property name="text">
+            <string>gbl_receiver_x_pos</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_receiver_y_pos</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_receiver_z_pos</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_x_pos</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_y_pos</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_zstage_pos</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_laser_power</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_receiver_x_lim_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_receiver_x_lim_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_receiver_y_lim_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_receiver_y_lim_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_receiver_z_lim_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_receiver_z_lim_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_x_lim_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_x_lim_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_y_lim_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_y_lim_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_zstage_lim_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_zstage_lim_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_laser_power_lim_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_laser_power_lim_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_x_refresh_bound_A_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_x_refresh_bound_A_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_y_refresh_bound_A_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_y_refresh_bound_A_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_x_refresh_bound_B_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_x_refresh_bound_B_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_y_refresh_bound_B_up</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_y_refresh_bound_B_down</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_donor_refresh_distance</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_super_pause</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_super_stop</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>gbl_super_settling_delay</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_global">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_global">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>SET NEW VALUE</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
@@ -497,86 +443,72 @@
         <x>20</x>
         <y>10</y>
         <width>751</width>
-        <height>161</height>
+        <height>121</height>
        </rect>
       </property>
       <property name="title">
        <string>Z STAGE</string>
       </property>
-      <widget class="QLCDNumber" name="lcdNumber_zstage">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>121</width>
-         <height>23</height>
+         <x>22</x>
+         <y>31</y>
+         <width>389</width>
+         <height>62</height>
         </rect>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_zstage_home">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>60</y>
-         <width>121</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>HOME</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_zstage_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_REL [mm]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_zstage_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_zstage_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_zstage_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_ABS [mm]</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLCDNumber" name="lcdNumber_zstage">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="segmentStyle">
+             <enum>QLCDNumber::Flat</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_zstage_home">
+            <property name="text">
+             <string>HOME</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_zstage_move_rel"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_zstage_move_rel">
+            <property name="text">
+             <string>MOVE_REL [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_zstage_move_abs"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_zstage_move_abs">
+            <property name="text">
+             <string>MOVE_ABS [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
@@ -596,97 +528,83 @@
       <property name="title">
        <string>DONOR X</string>
       </property>
-      <widget class="QLCDNumber" name="lcdNumber_donor_x">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>121</width>
-         <height>23</height>
+         <x>22</x>
+         <y>31</y>
+         <width>389</width>
+         <height>62</height>
         </rect>
        </property>
-       <property name="font">
-        <font>
-         <pointsize>8</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Box</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="smallDecimalPoint">
-        <bool>false</bool>
-       </property>
-       <property name="numDigits">
-        <number>5</number>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_donor_x_home">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>60</y>
-         <width>121</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>HOME</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_donor_x_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_REL [mm]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_donor_x_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_donor_x_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_donor_x_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_ABS [mm]</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLCDNumber" name="lcdNumber_donor_x">
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+              <underline>false</underline>
+             </font>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Box</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="smallDecimalPoint">
+             <bool>false</bool>
+            </property>
+            <property name="numDigits">
+             <number>5</number>
+            </property>
+            <property name="segmentStyle">
+             <enum>QLCDNumber::Flat</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_donor_x_home">
+            <property name="text">
+             <string>HOME</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_donor_x_move_rel"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_donor_x_move_rel">
+            <property name="text">
+             <string>MOVE_REL [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_donor_x_move_abs"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_donor_x_move_abs">
+            <property name="text">
+             <string>MOVE_ABS [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_donor_y">
@@ -701,80 +619,66 @@
       <property name="title">
        <string>DONOR Y</string>
       </property>
-      <widget class="QLCDNumber" name="lcdNumber_donor_y">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>121</width>
-         <height>23</height>
+         <x>22</x>
+         <y>31</y>
+         <width>389</width>
+         <height>62</height>
         </rect>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_donor_y_home">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>60</y>
-         <width>121</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>HOME</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_donor_y_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_REL [mm]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_donor_y_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_donor_y_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_donor_y_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_ABS [mm]</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <widget class="QLCDNumber" name="lcdNumber_donor_y">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="segmentStyle">
+             <enum>QLCDNumber::Flat</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_donor_y_home">
+            <property name="text">
+             <string>HOME</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_donor_y_move_rel"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_donor_y_move_rel">
+            <property name="text">
+             <string>MOVE_REL [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_donor_y_move_abs"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_donor_y_move_abs">
+            <property name="text">
+             <string>MOVE_ABS [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
@@ -794,80 +698,66 @@
       <property name="title">
        <string>RECEIVER X</string>
       </property>
-      <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_x">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>121</width>
-         <height>23</height>
+         <x>22</x>
+         <y>33</y>
+         <width>389</width>
+         <height>62</height>
         </rect>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_x_home">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>60</y>
-         <width>121</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>HOME</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_x_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_REL [mm]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_receiver_stepper_x_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_receiver_stepper_x_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_x_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_ABS [mm]</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item>
+           <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_x">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="segmentStyle">
+             <enum>QLCDNumber::Flat</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_x_home">
+            <property name="text">
+             <string>HOME</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_15">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_receiver_stepper_x_move_rel"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_x_move_rel">
+            <property name="text">
+             <string>MOVE_REL [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_receiver_stepper_x_move_abs"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_x_move_abs">
+            <property name="text">
+             <string>MOVE_ABS [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_receiver_stepper_y">
@@ -882,80 +772,66 @@
       <property name="title">
        <string>RECEIVER Y</string>
       </property>
-      <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_y">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>121</width>
-         <height>23</height>
+         <x>22</x>
+         <y>31</y>
+         <width>389</width>
+         <height>62</height>
         </rect>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_y_home">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>60</y>
-         <width>121</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>HOME</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_y_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_REL [mm]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_receiver_stepper_y_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_receiver_stepper_y_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_y_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_ABS [mm]</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_17">
+          <item>
+           <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_y">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="segmentStyle">
+             <enum>QLCDNumber::Flat</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_y_home">
+            <property name="text">
+             <string>HOME</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_18">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_receiver_stepper_y_move_rel"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_y_move_rel">
+            <property name="text">
+             <string>MOVE_REL [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_19">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_receiver_stepper_y_move_abs"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_y_move_abs">
+            <property name="text">
+             <string>MOVE_ABS [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_receiver_stepper_z">
@@ -970,80 +846,66 @@
       <property name="title">
        <string>RECEIVER Z</string>
       </property>
-      <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_z">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>121</width>
-         <height>23</height>
+         <x>22</x>
+         <y>31</y>
+         <width>389</width>
+         <height>62</height>
         </rect>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_z_home">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>60</y>
-         <width>121</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>HOME</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_z_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_REL [mm]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_receiver_stepper_z_move_rel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_receiver_stepper_z_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>30</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_receiver_stepper_z_move_abs">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>60</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MOVE_ABS [mm]</string>
-       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_20">
+          <item>
+           <widget class="QLCDNumber" name="lcdNumber_receiver_stepper_z">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="segmentStyle">
+             <enum>QLCDNumber::Flat</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_z_home">
+            <property name="text">
+             <string>HOME</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_21">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_receiver_stepper_z_move_rel"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_z_move_rel">
+            <property name="text">
+             <string>MOVE_REL [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_22">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_receiver_stepper_z_move_abs"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_receiver_stepper_z_move_abs">
+            <property name="text">
+             <string>MOVE_ABS [mm]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
@@ -1063,145 +925,101 @@
       <property name="title">
        <string>LASER</string>
       </property>
-      <widget class="QLCDNumber" name="lcdNumber_laser">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>40</y>
-         <width>121</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="segmentStyle">
-        <enum>QLCDNumber::Flat</enum>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_laser_power">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>67</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SET POWER [%]</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_laser_singlePulse">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>100</y>
-         <width>111</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>SINGLE PULSE</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_laser_power">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>40</y>
-         <width>121</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_laser_numberPulses">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>40</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_laser_multiPulse">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>67</y>
-         <width>111</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MULTI PULSE [#]</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_laser_on">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>67</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>LASER ON</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_laser_off">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>100</y>
-         <width>261</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>LASER OFF</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
          <y>20</y>
-         <width>121</width>
-         <height>20</height>
+         <width>389</width>
+         <height>120</height>
         </rect>
        </property>
-       <property name="text">
-        <string>POWER SETPOINT</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>20</y>
-         <width>121</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>NUMBER OF PULSES</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_3">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>20</y>
-         <width>46</width>
-         <height>13</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>POWER</string>
-       </property>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_23">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>POWER</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLCDNumber" name="lcdNumber_laser">
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="segmentStyle">
+             <enum>QLCDNumber::Flat</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_laser_on">
+            <property name="text">
+             <string>LASER ON</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <layout class="QVBoxLayout" name="verticalLayout_24">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>POWER SETPOINT</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_laser_power"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_laser_power">
+            <property name="text">
+             <string>SET POWER [%]</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="2" rowspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_25">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>NUMBER OF PULSES</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_laser_numberPulses"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_laser_multiPulse">
+            <property name="text">
+             <string>MULTI PULSE [#]</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_laser_singlePulse">
+            <property name="text">
+             <string>SINGLE PULSE</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QPushButton" name="pushButton_laser_off">
+          <property name="text">
+           <string>LASER OFF</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
@@ -1221,83 +1039,71 @@
       <property name="title">
        <string>PRINT 3D</string>
       </property>
-      <widget class="QPushButton" name="pushButton_super_print3D">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>START</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_super_print3D_laserPower">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_4">
        <property name="geometry">
         <rect>
-         <x>250</x>
-         <y>20</y>
-         <width>101</width>
-         <height>20</height>
+         <x>140</x>
+         <y>22</y>
+         <width>96</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>LASER POWER A</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_super_print3D">
-       <property name="geometry">
-        <rect>
-         <x>490</x>
-         <y>40</y>
-         <width>121</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>MULTIMATERIAL</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_super_print3D_laserPower_2">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_18">
        <property name="geometry">
         <rect>
-         <x>380</x>
-         <y>20</y>
-         <width>101</width>
-         <height>20</height>
+         <x>290</x>
+         <y>22</y>
+         <width>95</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>LASER POWER B</string>
        </property>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>40</y>
+         <width>510</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QPushButton" name="pushButton_super_print3D">
+          <property name="text">
+           <string>START</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_print3D_laserPower">
+          <property name="text">
+           <string>0.0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_print3D_laserPower_2">
+          <property name="text">
+           <string>0.0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_super_print3D">
+          <property name="text">
+           <string>MULTIMATERIAL</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_scripts_print3D_2">
@@ -1312,91 +1118,39 @@
       <property name="title">
        <string>ENERGY SCAN</string>
       </property>
-      <widget class="QPushButton" name="pushButton_super_energy">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>START</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_5">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>20</y>
-         <width>111</width>
-         <height>20</height>
+         <x>130</x>
+         <y>22</y>
+         <width>110</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>LASER POWER MIN</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_energy_laser_min">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_super_energy_laser_max">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>100.0</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>20</y>
-         <width>121</width>
-         <height>20</height>
+         <x>270</x>
+         <y>22</y>
+         <width>114</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>LASER POWER MAX</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_energy_laser_delta">
-       <property name="geometry">
-        <rect>
-         <x>500</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>10.0</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_7">
        <property name="geometry">
         <rect>
-         <x>500</x>
-         <y>20</y>
-         <width>131</width>
-         <height>20</height>
+         <x>415</x>
+         <y>22</y>
+         <width>123</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
@@ -1406,54 +1160,94 @@
       <widget class="QLabel" name="label_12">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>70</y>
-         <width>111</width>
-         <height>20</height>
+         <x>123</x>
+         <y>76</y>
+         <width>110</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>NUMBER OF STEPS</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_energy_number">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>90</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>10</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_13">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>70</y>
-         <width>131</width>
-         <height>20</height>
+         <x>269</x>
+         <y>76</y>
+         <width>126</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>SPATIAL SEPARATION</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_energy_spatial">
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>90</y>
-         <width>113</width>
-         <height>21</height>
+         <x>22</x>
+         <y>40</y>
+         <width>527</width>
+         <height>30</height>
         </rect>
        </property>
-       <property name="text">
-        <string>0.05</string>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QPushButton" name="pushButton_super_energy">
+          <property name="text">
+           <string>START</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_energy_laser_min">
+          <property name="text">
+           <string>0.0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_energy_laser_max">
+          <property name="text">
+           <string>100.0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_energy_laser_delta">
+          <property name="text">
+           <string>10.0</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>123</x>
+         <y>99</y>
+         <width>283</width>
+         <height>24</height>
+        </rect>
        </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_10">
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_energy_number">
+          <property name="text">
+           <string>10</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_energy_spatial">
+          <property name="text">
+           <string>0.05</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_scripts_print3D_3">
@@ -1468,174 +1262,156 @@
       <property name="title">
        <string>FOCUS SCAN</string>
       </property>
-      <widget class="QPushButton" name="pushButton_super_focus">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>START</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_8">
        <property name="geometry">
         <rect>
-         <x>250</x>
-         <y>20</y>
-         <width>111</width>
-         <height>20</height>
+         <x>122</x>
+         <y>22</y>
+         <width>78</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>Z_STAGE MIN</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_focus_z_min">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_super_focus_z_max">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>10.0</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_9">
        <property name="geometry">
         <rect>
-         <x>380</x>
-         <y>20</y>
-         <width>121</width>
-         <height>20</height>
+         <x>268</x>
+         <y>22</y>
+         <width>82</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>Z_STAGE MAX</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_focus_z_delta">
-       <property name="geometry">
-        <rect>
-         <x>500</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>1.0</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
-         <x>510</x>
-         <y>20</y>
-         <width>131</width>
-         <height>20</height>
+         <x>414</x>
+         <y>22</y>
+         <width>91</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>Z_STAGE DELTA</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_focus_power">
-       <property name="geometry">
-        <rect>
-         <x>620</x>
-         <y>40</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>20.0</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_11">
        <property name="geometry">
         <rect>
-         <x>630</x>
-         <y>20</y>
-         <width>131</width>
-         <height>20</height>
+         <x>414</x>
+         <y>76</y>
+         <width>84</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>LASER POWER</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_focus_number">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>90</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>10</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_14">
        <property name="geometry">
         <rect>
-         <x>370</x>
-         <y>70</y>
-         <width>131</width>
-         <height>20</height>
+         <x>268</x>
+         <y>76</y>
+         <width>126</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>SPATIAL SEPARATION</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_super_focus_spatial">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>90</y>
-         <width>113</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.05</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_15">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>70</y>
-         <width>111</width>
-         <height>20</height>
+         <x>122</x>
+         <y>76</y>
+         <width>110</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
         <string>NUMBER OF STEPS</string>
        </property>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>21</x>
+         <y>40</y>
+         <width>527</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <item>
+         <widget class="QPushButton" name="pushButton_super_focus">
+          <property name="text">
+           <string>START</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_focus_z_min">
+          <property name="text">
+           <string>0.0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_focus_z_max">
+          <property name="text">
+           <string>10.0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_focus_z_delta">
+          <property name="text">
+           <string>1.0</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>122</x>
+         <y>99</y>
+         <width>427</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_focus_number">
+          <property name="text">
+           <string>10</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_focus_spatial">
+          <property name="text">
+           <string>0.05</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_super_focus_power">
+          <property name="text">
+           <string>20.0</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_3">
@@ -1653,9 +1429,9 @@
       <widget class="QPushButton" name="pushButton_super_stop">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>290</x>
          <y>30</y>
-         <width>131</width>
+         <width>211</width>
          <height>51</height>
         </rect>
        </property>
@@ -1666,9 +1442,9 @@
       <widget class="QPushButton" name="pushButton_super_pause">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>40</x>
          <y>30</y>
-         <width>131</width>
+         <width>211</width>
          <height>51</height>
         </rect>
        </property>
@@ -1689,63 +1465,51 @@
       <property name="title">
        <string>PROGRESS</string>
       </property>
-      <widget class="QLabel" name="label_16">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>30</y>
-         <width>53</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>[%]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_super_perc">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
+      <widget class="QWidget" name="">
        <property name="geometry">
         <rect>
          <x>30</x>
          <y>30</y>
-         <width>51</width>
-         <height>22</height>
+         <width>81</width>
+         <height>53</height>
         </rect>
        </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_17">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>60</y>
-         <width>53</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>[min]</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_super_time">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>60</y>
-         <width>51</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QLineEdit" name="lineEdit_super_perc">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>0.0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>[%]</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="lineEdit_super_time">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>0.0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>[min]</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </widget>
