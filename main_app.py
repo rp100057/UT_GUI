@@ -144,7 +144,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         p.setColor(self.lcdNumber_laser.backgroundRole(), QtCore.Qt.white)
         self.lcdNumber_laser.setPalette(p)
         
-      
+        
     def status_loop(self):
         while self.active==True:
 #            print 'status active'
@@ -174,24 +174,37 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         
         if self.status_donor > self.timeout_value:
             self.lineEdit_donor_ctrl_status.setText('Off') 
+            self.tab_donor.setDisabled(True)
         else:
             self.lineEdit_donor_ctrl_status.setText('Active')
+            self.tab_donor.setDisabled(False)
 
         if self.status_receiver > self.timeout_value:
             self.lineEdit_receiver_ctrl_status.setText('Off') 
+            self.tab_receiver_stepper.setDisabled(True)
         else:
             self.lineEdit_receiver_ctrl_status.setText('Active')
+            self.tab_receiver_stepper.setDisabled(False)
 
         if self.status_zstage > self.timeout_value:
-            self.lineEdit_zstage_ctrl_status.setText('Off') 
+            self.lineEdit_zstage_ctrl_status.setText('Off')            
+            self.tab_z_stage.setDisabled(True)
+       
         else:
             self.lineEdit_zstage_ctrl_status.setText('Active')
+            self.tab_z_stage.setDisabled(False)
 
         if self.status_laser > self.timeout_value:
-            self.lineEdit_laser_ctrl_status.setText('Off') 
+            self.lineEdit_laser_ctrl_status.setText('Off')
+            self.tab_laser.setDisabled(True)
         else:
-            self.lineEdit_laser_ctrl_status.setText('Active')               
-        
+            self.lineEdit_laser_ctrl_status.setText('Active')
+            self.tab_laser.setDisabled(False)               
+        if self.status_zstage > self.timeout_value or self.status_laser > self.timeout_value or self.status_receiver > self.timeout_value or self.status_donor > self.timeout_value:
+            self.tab_scripts.setDisabled(True)
+        else:
+            self.tab_scripts.setDisabled(False)
+            
         return 0
       
     def laser_setPower(self):
