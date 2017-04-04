@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'LIFT_GUI.ui'
 #
-# Created: Tue Apr 04 10:41:59 2017
+# Created: Tue Apr 04 11:12:03 2017
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
