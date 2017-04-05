@@ -149,7 +149,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         while self.active==True:
 #            print 'status active'
             self.ctrl_status_update()
-            time.sleep(0.005)
+            time.sleep(0.0025)
             
             if not self.status_q.empty():        
                 item=self.status_q.get()

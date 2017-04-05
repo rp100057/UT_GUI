@@ -183,7 +183,7 @@ class ctrl_super:
         for i in np.arange(energy_min,energy_max+delta,delta):
             self.laser_q.put(['update_laser_power',i],False)      
             for j in np.arange(0,steps_per_energy):
-                self.progress_current = (i/delta*steps_per_energy+j+1)
+                self.progress_current = (i/(delta+1)*steps_per_energy+j+1)
                 
                 if gb.gbl_dict['gbl_super_stop']:
                     break
