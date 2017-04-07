@@ -21,7 +21,7 @@ class wrp_RTC4:
         dll_initialized = True when the DLL is initialized otherwise False
     """
     def __init__(self): #takes as input the gate time wondow for a single pulse in microseconds
-        self.PulseTimeWindow=2 #each unit is 10mus for example (9 means 90mus)
+        self.PulseTimeWindow=2300 #each unit is 10mus for example (9 means 90mus)
         return
     
     
