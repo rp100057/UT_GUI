@@ -37,7 +37,7 @@ class control_laser:
     def sender_loop(self): 
         while self.active==True:
 #            print 'sender active'
-            time.sleep(0.15)
+            time.sleep(0.3)
             self.sender_q.put(['update_laser',self.get_laser_power()],False)
             self.sender_q.put(['alive_laser',0],False)
         
@@ -63,6 +63,8 @@ class control_laser:
         if powerPerc <= gb.gbl_dict['gbl_laser_power_lim_up'] and powerPerc >=  gb.gbl_dict['gbl_laser_power_lim_down']:
             print 'Set laser power to '+str(powerPerc)
             self.laser.UpdateLaserPower(powerPerc)
+            gb.gbl_dict['gbl_laser_power']=powerPerc
+
         else:
             print "OUT OF LIMITS"
         

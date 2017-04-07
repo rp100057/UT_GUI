@@ -44,7 +44,7 @@ class control_receiver:
     def sender_loop(self): 
         while self.active==True:
 #            print 'sender active'
-            time.sleep(0.15)
+            time.sleep(0.2)
             self.sender_q.put(['update_receiver_x',self.get_pos_x()],False)
             self.sender_q.put(['update_receiver_y',self.get_pos_y()],False)
             self.sender_q.put(['update_receiver_z',self.get_pos_z()],False)

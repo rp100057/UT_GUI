@@ -194,16 +194,17 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
             self.lineEdit_zstage_ctrl_status.setText('Active')
             self.tab_z_stage.setDisabled(False)
 
-        if self.status_laser > self.timeout_value:
-            self.lineEdit_laser_ctrl_status.setText('Off')
-            self.tab_laser.setDisabled(True)
-        else:
-            self.lineEdit_laser_ctrl_status.setText('Active')
-            self.tab_laser.setDisabled(False)               
-#        if self.status_zstage > self.timeout_value or self.status_laser > self.timeout_value or self.status_receiver > self.timeout_value or self.status_donor > self.timeout_value:
-#            self.tab_scripts.setDisabled(True)
+#        if self.status_laser > self.timeout_value:
+#            self.lineEdit_laser_ctrl_status.setText('Off')
+#            self.tab_laser.setDisabled(True)
 #        else:
-#            self.tab_scripts.setDisabled(False)
+#            self.lineEdit_laser_ctrl_status.setText('Active')
+#            self.tab_laser.setDisabled(False) 
+              
+        if self.status_zstage > self.timeout_value or self.status_laser > self.timeout_value or self.status_receiver > self.timeout_value or self.status_donor > self.timeout_value:
+            self.tab_scripts.setDisabled(True)
+        else:
+            self.tab_scripts.setDisabled(False)
             
         return 0
       

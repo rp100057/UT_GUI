@@ -39,7 +39,7 @@ class control_donor:
     def sender_loop(self): 
         while self.active==True:
 #            print 'sender active'
-            time.sleep(0.15)
+            time.sleep(0.2)
             self.sender_q.put(['update_donor_x',self.get_pos_x()],False)
             self.sender_q.put(['update_donor_y',self.get_pos_y()],False)
             self.sender_q.put(['alive_donor',0],False)
