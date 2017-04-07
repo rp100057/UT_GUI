@@ -75,5 +75,5 @@ class control_laser:
         self.laser.ReleaseMultiplePulses(numberOfPulses)
         
     def get_laser_power(self):
-        return gb.gbl_laser_power
+        return gb.gbl_dict['gbl_laser_power']
         
