@@ -149,7 +149,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         while self.active==True:
 #            print 'status active'
             self.ctrl_status_update()
-            time.sleep(0.0025)
+            time.sleep(0.002)
             
             if not self.status_q.empty():        
                 item=self.status_q.get()
@@ -330,7 +330,7 @@ class MainApp(QtGui.QMainWindow, lift_gui.Ui_MainWindow):
         
     def update_laser(self,pos):
         self.lcdNumber_laser.display(pos) 
-        gb.gbl_dict['gbl_laser_pos']=pos
+        gb.gbl_dict['gbl_laser_power']=pos
         
     def update_super(self,dummy):
 #        dummy = [perc,time]

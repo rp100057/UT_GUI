@@ -215,6 +215,7 @@ class ctrl_super:
         spatial_step=dummy[5] #mm
         marking_offset=4
         k=1
+        ii=0
         self.laser_q.put(['update_laser_power',laser_power],False)
         self.zstage_q.put(['move_abs_z',z_min],False)
         time.sleep(2)
@@ -234,16 +235,19 @@ class ctrl_super:
                 break 
             
             # Add markings to every fith line
-            if(i%5 == 0 and i > 0):
+            if(ii%5 == 0 and ii > 0):
+                print 'ADD MARKING'
                 self.donor_q.put(['move_rel_x',marking_offset*k*spatial_step],False)
                 
-                number_of_markings = int(i/5)
+                number_of_markings = int(ii/5)
                 for m in range(0,number_of_markings):
                     self.donor_q.put(['move_rel_x',k*spatial_step],False)
                     self.release_laser()
+                    print m
                 #moving back to line
                 self.donor_q.put(['move_rel_x',-1*k*(marking_offset+number_of_markings)*spatial_step],False)
-            
+                print 'marking finished'
+            ii+=1
             self.donor_q.put(['move_rel_y',spatial_step],False)
             k=-1*k
             self.zstage_q.put(['move_abs_z',i],False)

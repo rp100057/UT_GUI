@@ -33,9 +33,9 @@ gbl_laser_power_lim_up = 99.05
 # SCRIPT
 gbl_donor_x_refresh_bound_A_up = 30
 gbl_donor_x_refresh_bound_A_down = 1
-gbl_donor_y_refresh_bound_A_up = 15
+gbl_donor_y_refresh_bound_A_up = 90
 gbl_donor_y_refresh_bound_A_down = 1
-gbl_donor_x_refresh_bound_B_up = 31
+gbl_donor_x_refresh_bound_B_up = 90
 gbl_donor_x_refresh_bound_B_down = 1
 gbl_donor_y_refresh_bound_B_up = 45
 gbl_donor_y_refresh_bound_B_down = 31
