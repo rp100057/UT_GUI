@@ -165,6 +165,7 @@ class ctrl_super:
             if gb.gbl_dict['gbl_super_stop']:
                     break    
             self.new_layer()
+        time.sleep(1)
         print '==== SCRIPT FINISHED ===='
 
     def energy(self,dummy):
@@ -183,7 +184,7 @@ class ctrl_super:
         for i in np.arange(energy_min,energy_max+delta,delta):
             self.laser_q.put(['update_laser_power',i],False)      
             for j in np.arange(0,steps_per_energy):
-                self.progress_current = (i/(delta+1)*steps_per_energy+j+1)
+                self.progress_current = ((i-energy_min)/(delta)*steps_per_energy+j+1)
                 
                 if gb.gbl_dict['gbl_super_stop']:
                     break
@@ -197,6 +198,7 @@ class ctrl_super:
                     break    
             self.receiver_q.put(['move_rel_y',spatial_step],False)
             k=-1*k
+        time.sleep(1)
         print '==== SCRIPT FINISHED ===='
         
     def focus(self,dummy):
@@ -214,12 +216,14 @@ class ctrl_super:
         marking_offset=4
         k=1
         self.laser_q.put(['update_laser_power',laser_power],False)
+        self.zstage_q.put(['move_abs_z',z_min],False)
+        time.sleep(2)
         
         self.progress_total = ((z_max-z_min)/z_delta+1)*steps_per_z   
         
         for i in np.arange(z_min,z_max+z_delta,z_delta):
             for j in np.arange(0,steps_per_z):
-                self.progress_current = (i/z_delta*steps_per_z+j+1)
+                self.progress_current = ((i-z_min)/z_delta*steps_per_z+j+1)
                 if gb.gbl_dict['gbl_super_stop']:
                     break
                 while gb.gbl_dict['gbl_super_pause']:
@@ -230,18 +234,20 @@ class ctrl_super:
                 break 
             
             # Add markings to every fith line
-            if(i%5 == 0 and i > 0): 
-                self.donor_q.put(['move_rel_x',marking_offset*k*spatial_step],False)  
+            if(i%5 == 0 and i > 0):
+                self.donor_q.put(['move_rel_x',marking_offset*k*spatial_step],False)
+                
                 number_of_markings = int(i/5)
                 for m in range(0,number_of_markings):
-                    self.donor_q.put(['move_rel_x',k*spatial_step],False)                   
+                    self.donor_q.put(['move_rel_x',k*spatial_step],False)
                     self.release_laser()
                 #moving back to line
-                self.donor_q.put(['move_rel_x',-1*(marking_offset+number_of_markings)*k*spatial_step],False)   
+                self.donor_q.put(['move_rel_x',-1*k*(marking_offset+number_of_markings)*spatial_step],False)
             
             self.donor_q.put(['move_rel_y',spatial_step],False)
             k=-1*k
             self.zstage_q.put(['move_abs_z',i],False)
+        time.sleep(1)
         print '==== SCRIPT FINISHED ===='
         
         
@@ -316,5 +322,6 @@ class ctrl_super:
             self.donor_pos_B_x_hist = gb.gbl_dict['gbl_donor_x_pos']
             self.donor_pos_B_y_hist = gb.gbl_dict['gbl_donor_y_pos']
             self.new_layer()
+        time.sleep(1)    
         print '==== SCRIPT FINISHED ===='
         return 0
