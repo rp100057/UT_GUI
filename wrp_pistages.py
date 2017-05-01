@@ -160,14 +160,18 @@ def startuphydra(CONTROLLERNAME, STAGES, REFMODE):
         if the variable STAGES is set to None this part is skipped
         """
         #print 'Uploading parameter files...'
-        if STAGES:
-            allaxes = pidevice.qSAI_ALL()
-            stages = STAGES if isinstance(STAGES, (list, tuple)) else [STAGES]
-            stages = stages[:len(allaxes)]
-            allaxes = allaxes[:len(stages)]
-            pidevice.CST(allaxes, stages) 
-            sleep(2)
-            
+#        if STAGES:
+#            allaxes = pidevice.qSAI_ALL()
+#            stages = STAGES if isinstance(STAGES, (list, tuple)) else [STAGES]
+#            stages = stages[:len(allaxes)]
+#            allaxes = allaxes[:len(stages)]
+#            pidevice.CST(allaxes, stages) 
+#            sleep(2)
+        
+        #does the reboot of the controller      
+        pidevice.RBT()
+
+        
         pidevice.SVO('1', True) #switches all the servos on
         pidevice.SVO('2', True)
             
@@ -239,13 +243,13 @@ def startupmercury(CONTROLLERNAME, STAGES, REFMODE):
         if the variable STAGES is set to None this part is skipped
         """
 
-        if STAGES:
-            allaxes = pidevice.qSAI_ALL()
-            stages = STAGES if isinstance(STAGES, (list, tuple)) else [STAGES]
-            stages = stages[:len(allaxes)]
-            allaxes = allaxes[:len(stages)]
-            pidevice.CST(allaxes, stages) 
-            sleep(2)
+#        if STAGES:
+#            allaxes = pidevice.qSAI_ALL()
+#            stages = STAGES if isinstance(STAGES, (list, tuple)) else [STAGES]
+#            stages = stages[:len(allaxes)]
+#            allaxes = allaxes[:len(stages)]
+#            pidevice.CST(allaxes, stages) 
+#            sleep(2)
 #            
         pidevice.SVO('1', True) #switches all the servos on
 
@@ -300,7 +304,7 @@ class wrp_pistages:
     def init_controller(self, controller):
         
         if (controller=='Hydra'):
-            startuphydra('Hydra',('68409121','68409121') ,('FNL', 'FNL'))
+            startuphydra('Hydra',('68409121_U','68409121_L') ,('FNL', 'FNL'))
             self.piXYstages.ConnectRS232(comport=3, baudrate=115200)
 
         elif (controller=='MERCURY'):
