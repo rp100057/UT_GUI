@@ -44,9 +44,7 @@ class ctrl_super:
                         'focus' : self.focus,
                        }
         self.direction_A=1
-        self.condition_A = { 1 : gb.gbl_dict['gbl_donor_x_refresh_bound_A_up'],
-                            -1 : gb.gbl_dict['gbl_donor_x_refresh_bound_A_down']
-                           }
+        
                            
                        
         self.direction_B=1
@@ -95,8 +93,9 @@ class ctrl_super:
         return True
 
     def refresh_donor(self,dummy='A'):
+        self.condition_A = { 1 : gb.gbl_dict['gbl_donor_x_refresh_bound_A_up'],-1 : gb.gbl_dict['gbl_donor_x_refresh_bound_A_down']}
         if dummy == 'A':             
-            if(self.direction_A*gb.gbl_dict['gbl_donor_x_pos'] <= self.condition_A[self.direction_A]):
+            if(self.direction_A*gb.gbl_dict['gbl_donor_x_pos'] <= self.direction_A*self.condition_A[self.direction_A]):
                 self.donor_q.put(['move_rel_x',self.direction_A*gb.gbl_dict['gbl_donor_refresh_distance']],False)
             else:
                 self.donor_q.put(['move_rel_y',gb.gbl_dict['gbl_donor_refresh_distance']],False)
@@ -215,7 +214,7 @@ class ctrl_super:
         spatial_step=dummy[5] #mm
         marking_offset=4
         k=1
-        ii=0
+        ii=1
         self.laser_q.put(['update_laser_power',laser_power],False)
         self.zstage_q.put(['move_abs_z',z_min],False)
         time.sleep(2)

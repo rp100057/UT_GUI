@@ -15,11 +15,11 @@ gbl_zstage_pos=0.0
 gbl_laser_power=0.0
 
 # SOFTWARE LIMITS
-gbl_receiver_x_lim_down = 0.05
+gbl_receiver_x_lim_down = -0.01
 gbl_receiver_x_lim_up =2.95
-gbl_receiver_y_lim_down =0.05
+gbl_receiver_y_lim_down =-0.01
 gbl_receiver_y_lim_up =2.95
-gbl_receiver_z_lim_down =0.05
+gbl_receiver_z_lim_down =-0.01
 gbl_receiver_z_lim_up =2.95
 gbl_donor_x_lim_down = 0.05
 gbl_donor_x_lim_up = 99.95
@@ -31,7 +31,7 @@ gbl_laser_power_lim_down = 0.05
 gbl_laser_power_lim_up = 99.05
 
 # SCRIPT
-gbl_donor_x_refresh_bound_A_up = 30
+gbl_donor_x_refresh_bound_A_up = 45
 gbl_donor_x_refresh_bound_A_down = 1
 gbl_donor_y_refresh_bound_A_up = 90
 gbl_donor_y_refresh_bound_A_down = 1
